@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-category'])) {
         ];
 
         update('categories', (int)$id, $category);
-
         $status_message['success'] = "Категория <b>$name</b> успешно отредактирована!";
     }
 }
