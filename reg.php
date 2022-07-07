@@ -1,5 +1,5 @@
 <?php
-    include "app/controllers/users.php";
+    include "app/controllers/login&reg_form_handlers.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="wrapper">
-<?php include('app/include/header.php'); ?>
+        <?php include('app/include/header.php'); ?>
         <main>
             <section class="content">
                 <div class="container">
@@ -48,7 +48,7 @@
                                 <? if (!empty($status_message['more'])) echo "<p class='error'>{$status_message['more']}</p>" ?>
                             </div>
                             <button type="submit" class="btn btn-secondary w-100" name="button-reg">Зарегистириоваться</button>
-                            <p class="desc">Можете <a href="login.php">авторизоваться</a>, если у вас есть аккаунт!</p>
+                            <p class="desc">Можете <a href="<?= BASE_URL.'login.php'; ?>">авторизоваться</a>, если у вас есть аккаунт!</p>
                         </form>
                     </section>
                 </div>

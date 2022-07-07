@@ -23,7 +23,7 @@ $login = !empty($_POST['login']) ? htmlspecialchars($_POST['login']) : '';
 $email = !empty($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
 
 
-// Обработчик формы Регистрации
+/** Обработчик формы Регистрации **/
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
     // Данные из полей с формы
     $password  = $_POST['password'];
@@ -64,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
     }
 }
 
-// Обработчик формы Авторизации
+
+/** Обработчик формы Авторизации **/
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-login'])) {
     // Данные из полей с формы
     $password  = $_POST['password'];
@@ -100,6 +101,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-login'])) 
         $status_message['password'] = "Пароль не верный!";
     } else {
         writeToSessionUser($user);
+
+        // Если у данной почты были неудачные попытки Входа, до удаляем их при удачной авторизации
+        if (isset($_SESSION[$email])) unset($_SESSION[$email]);
 
         // Редирект на страницу Админки, если пользователь админ, если нет, то редиректим на Главную страницу сайта
         if ($_SESSION['admin']) {

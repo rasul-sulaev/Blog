@@ -40,6 +40,19 @@ a
 		color: inherit
 	
 		
+form
+	.error
+		margin-bottom: 0
+		color: red
+		font-style: italic
+	.success
+		padding: 15px 10px
+		color: #222
+		font-size: 16px
+		text-align: center
+		background-color: rgba($green, 0.3)
+		box-sizing: border-box
+		
 		
 .wrapper
 	min-height: 100vh
@@ -190,6 +203,7 @@ main
 					border-bottom: 1px solid #ccc
 					a
 						padding: 6px 0
+						width: 100%
 						display: inline-block
 						&:hover
 							padding-left: 6px
@@ -300,17 +314,6 @@ footer
 				text-decoration: underline
 				&:hover
 					text-decoration: none
-		.error
-			margin-bottom: 0
-			color: red
-			font-style: italic
-		.success
-			padding: 15px 10px
-			color: #222
-			font-size: 16px
-			text-align: center
-			background-color: rgba($green, 0.3)
-			box-sizing: border-box
 			span
 				font-size: 14px
 				a

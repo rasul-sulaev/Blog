@@ -22,14 +22,14 @@
                                 </a>
                                 <ul class="menu sub-menu">
                                     <?php if ($_SESSION['admin']): ?>
-                                    <li class="menu__item"><a href="<?= BASE_URL; ?>admin/">Админ панель</a></li>
+                                    <li class="menu__item"><a href="<?= BASE_URL.'admin/'; ?>">Админ панель</a></li>
                                     <? endif; ?>
-                                    <li class="menu__item"><a href="logout.php">Выход</a></li>
+                                    <li class="menu__item"><a href="<?= BASE_URL.'logout.php'; ?>">Выход</a></li>
                                 </ul>
                                 <? else: ?>
-                                <a href="login.php"><i class="fa fa-user fa-sm"></i> Вход</a>
+                                <a href="<?= BASE_URL.'login.php'; ?>"><i class="fa fa-user fa-sm"></i> Вход</a>
                                 <ul class="menu sub-menu">
-                                    <li class="menu__item"><a href="reg.php">Регистрация</a></li>
+                                    <li class="menu__item"><a href="<?= BASE_URL.'reg.php'; ?>">Регистрация</a></li>
                                 </ul>
                                 <? endif; ?>
                             </li>

@@ -39,6 +39,21 @@ a:hover {
   color: inherit;
 }
 
+form .error {
+  margin-bottom: 0;
+  color: red;
+  font-style: italic;
+}
+form .success {
+  padding: 15px 10px;
+  color: #222;
+  font-size: 16px;
+  text-align: center;
+  background-color: rgba(0, 132, 132, 0.3);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .wrapper {
   min-height: 100vh;
   display: -webkit-box;
@@ -226,6 +241,7 @@ main {
 }
 .sidebar section.categories ul li a {
   padding: 6px 0;
+  width: 100%;
   display: inline-block;
 }
 .sidebar section.categories ul li a:hover {
@@ -366,26 +382,12 @@ footer .footer-bottom {
 .auth-reg form .desc a:hover {
   text-decoration: none;
 }
-.auth-reg form .error {
-  margin-bottom: 0;
-  color: red;
-  font-style: italic;
-}
-.auth-reg form .success {
-  padding: 15px 10px;
-  color: #222;
-  font-size: 16px;
-  text-align: center;
-  background-color: rgba(0, 132, 132, 0.3);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-.auth-reg form .success span {
+.auth-reg form .desc span {
   font-size: 14px;
 }
-.auth-reg form .success span a {
+.auth-reg form .desc span a {
   text-decoration: underline;
 }
-.auth-reg form .success span a:hover {
+.auth-reg form .desc span a:hover {
   text-decoration: none;
 }

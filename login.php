@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "app/controllers/users.php";
+    include "app/controllers/login&reg_form_handlers.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,7 +39,7 @@
                                 <? if (!empty($status_message['more'])) echo "<p class='error'>{$status_message['more']}</p>" ?>
                             </div>
                             <button type="submit" class="btn btn-secondary w-100" name="button-login" value="send">Войти</button>
-                            <p class="desc">Можете <a href="reg.php">зарегистрироваться</a>, если у вас нет аккаунта!</p>
+                            <p class="desc">Можете <a href="<?= BASE_URL.'reg.php'; ?>">зарегистрироваться</a>, если у вас нет аккаунта!</p>
                             <? else: ?>
                             <div class="mb-3">
                                 <h5 class="error">Доступ к форме входа запрещен до <?= gmdate('H:i:s', $_SESSION[$email]['blocked-time-end'] + 10800); ?></h5>

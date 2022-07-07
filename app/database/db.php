@@ -122,10 +122,9 @@ function update($table, $id, $params) {
     foreach ($params as $key => $value) {
         $sql .= " $key = :$key,";
     }
-    $sql = substr($sql, 0, -1) . " WHERE id = ?";
+    $sql = substr($sql, 0, -1) . " WHERE id = $id";
 
     $query = $db->prepare($sql);
-    $query->bindParam(1, $id);
     $query->execute($params);
     queryCheckError($query);
 }

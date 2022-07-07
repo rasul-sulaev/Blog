@@ -1,0 +1,183 @@
+$gray: #5c5b5b
+$bg: #f6f6f6
+$green: #008484
+$green-hover: #006669
+
+body
+	font-size: 14px
+	background: $bg
+
+*
+	font-family: 'Finlandica', cursive
+
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+	color: $gray
+
+input, textarea, button, select
+	padding: 10px 15px !important
+	width: 100% !important
+	font-size: 14px !important
+	border-radius: 0 !important
+	&:focus
+		border-color: $green !important
+		box-shadow: none !important
+
+
+
+
+a
+	color: inherit
+	text-decoration: none
+	transition: all 100ms ease-in-out
+	&:hover
+		color: inherit
+
+
+form
+	.error
+		margin-bottom: 0
+		color: red
+		font-style: italic
+	.success
+		padding: 15px 10px
+		color: #222
+		font-size: 16px
+		text-align: center
+		background-color: rgba($green, 0.3)
+		box-sizing: border-box
+		
+
+.wrapper
+	min-height: 100vh
+	display: flex
+	flex-direction: column
+
+
+// HEADER
+header
+	padding: 15px 0
+	background: $green
+	& *
+		color: #fff
+	.logo
+		font-size: 22px
+		font-weight: bold
+	
+	.menu
+		margin: 0
+		padding-left: 0
+		list-style: none
+		display: flex
+		grid-gap: 20px
+		&__item
+			position: relative
+			&:hover > .menu
+				opacity: 1
+				visibility: visible
+			a
+				padding: 8px 0 4px
+				font-size: 15px
+				display: inline-block
+				background-image: linear-gradient(to right, #fff, #fff)
+				background-repeat: no-repeat
+				background-size: 0 2px
+				background-position: left bottom
+				transition: all 200ms ease-in-out
+				&:hover
+					background-size: 100% 2px
+			.menu
+				padding: 15px 10px 15px
+				position: absolute
+				left: -10px
+				width: 150px
+				flex-direction: column
+				grid-gap: 0
+				background: $green
+				transition: all 200ms ease-in-out
+				opacity: 0
+				visibility: hidden
+				&__item
+					a
+						font-size: 13px
+						
+
+
+// MAIN
+main
+	flex-grow: 1
+	& > .content
+		padding: 20px 0
+		height: calc(100vh - 65px) !important
+		//background-color: red
+
+
+// SIDEBAR
+.sidebar
+	width: calc(25% - 20px)
+	padding: 30px 0 20px !important
+	margin: 0 !important
+	margin-right: 20px !important
+	background-color: #303036
+	.content
+		position: sticky
+		top: 0
+		display: flex
+		flex-direction: column
+		grid-gap: 20px
+	section
+		padding: 20px
+		//background-color: #fff
+		.title
+			color: #fff
+			margin-bottom: 15px
+			padding-bottom: 10px
+			border-bottom: 1px solid #fff
+		&.categories
+			ul
+				margin: 0
+				padding-left: 0
+				list-style: none
+				li
+					border-bottom: 1px solid #ccc
+					a
+						padding: 6px 0
+						width: 100%
+						color: #fff
+						display: inline-block
+						&:hover
+							padding-left: 6px
+
+
+// Контент
+.main-content
+	padding: 45px 0 60px
+	
+	
+// Посты
+.posts
+	&-title
+		margin: 0 0 30px
+		text-align: center
+		
+		
+// Таблица
+.table
+	a
+		color: $green
+		text-decoration: underline
+		&:hover
+			text-decoration: none
+			
+
+			
+// CK Editor
+.ck-button
+	padding: inherit !important
+	width: auto !important
+	font-size: inherit !important
