@@ -1,3 +1,2 @@
 <?php
-
-define('BASE_URL', 'http://blog/');
+const BASE_URL = 'http://blog/';

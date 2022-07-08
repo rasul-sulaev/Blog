@@ -1,3 +1,7 @@
+<?php
+    include "app/controllers/categories.php";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +16,7 @@
 </head>
 <body>
     <div class="wrapper">
-<?php include('app/include/header.php'); ?>
+        <?php include('app/include/header.php'); ?>
         <main>
             <section class="slider">
                 <div class="container">
@@ -130,11 +134,9 @@
                                 <section class="categories">
                                     <h4 class="title">Категории</h4>
                                     <ul>
-                                        <li><a href="#">Прграммирование</a></li>
-                                        <li><a href="#">Дизайн</a></li>
-                                        <li><a href="#">Визуализация</a></li>
-                                        <li><a href="#">Кейсы</a></li>
-                                        <li><a href="#">Мотивация</a></li>
+                                        <? foreach ($categories as $category): ?>
+                                        <li><a href="#"><?=$category['name']?></a></li>
+                                        <? endforeach; ?>
                                     </ul>
                                 </section>
                             </div>
@@ -143,7 +145,7 @@
                 </div>
             </section>
         </main>
-<?php include("app/include/footer.php"); ?>
+        <?php include("app/include/footer.php"); ?>
     </div>
 
     <script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>
