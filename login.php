@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="wrapper">
-<?php include("app/include/header.php"); ?>
+        <?php include("app/include/header.php"); ?>
         <main>
             <section class="content">
                 <div class="container">
@@ -50,7 +50,7 @@
                 </div>
             </section>
         </main>
-<?php include("app/include/footer.php"); ?>
+        <?php include("app/include/footer.php"); ?>
     </div>
 
     <script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>

@@ -1,5 +1,6 @@
 <?php
-    include "app/controllers/categories.php";
+    include_once "path.php";
+    include SITE_ROOT."/app/controllers/posts.php";
 ?>
 
 <!doctype html>
@@ -61,66 +62,19 @@
                         <div class="main-content col-12 col-md-9">
                             <div class="posts">
                                 <h2>Последние публикации</h2>
+                                <? foreach ($posts as $post): ?>
                                 <div class="post row">
-                                    <img class="post__img col-12 col-md-4" src="https://blog.templatetoaster.com/wp-content/uploads/2020/05/Bootstrap-5-Facebbok.png" alt="">
+                                    <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
                                     <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href="">Прикольные статья на тему динамического сайта</a>
+                                        <a class="post__title" href=""><?=$post['title']?></a>
                                         <div class="post__info">
                                             <i class="fa fa-user"> Имя Автора</i>
                                             <i class="fa fa-calendar"> Март 11, 2019</i>
                                         </div>
-                                        <p class="post__preview-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                            fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.
-                                        </p>
+                                        <p class="post__preview-text"><?=$post['content']?></p>
                                     </div>
                                 </div>
-                                <div class="post row">
-                                    <img class="post__img col-12 col-md-4" src="https://blog.templatetoaster.com/wp-content/uploads/2020/05/Bootstrap-5-Facebbok.png" alt="">
-                                    <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href="">Прикольные статья на тему динамического сайта</a>
-                                        <div class="post__info">
-                                            <i class="fa fa-user"> Имя Автора</i>
-                                            <i class="fa fa-calendar"> Март 11, 2019</i>
-                                        </div>
-                                        <p class="post__preview-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                            fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="post row">
-                                    <img class="post__img col-12 col-md-4" src="https://blog.templatetoaster.com/wp-content/uploads/2020/05/Bootstrap-5-Facebbok.png" alt="">
-                                    <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href="">Прикольные статья на тему динамического сайта</a>
-                                        <div class="post__info">
-                                            <i class="fa fa-user"> Имя Автора</i>
-                                            <i class="fa fa-calendar"> Март 11, 2019</i>
-                                        </div>
-                                        <p class="post__preview-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                            fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="post row">
-                                    <img class="post__img col-12 col-md-4" src="https://blog.templatetoaster.com/wp-content/uploads/2020/05/Bootstrap-5-Facebbok.png" alt="">
-                                    <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href="">Прикольные статья на тему динамического сайта</a>
-                                        <div class="post__info">
-                                            <i class="fa fa-user"> Имя Автора</i>
-                                            <i class="fa fa-calendar"> Март 11, 2019</i>
-                                        </div>
-                                        <p class="post__preview-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                            fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.
-                                        </p>
-                                    </div>
-                                </div>
+                                <? endforeach; ?>
                             </div>
                         </div>
                         <div class="sidebar col-12 col-md-3">

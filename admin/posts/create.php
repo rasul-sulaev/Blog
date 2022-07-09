@@ -1,5 +1,6 @@
 <?php
-include_once "../../path.php";
+    include_once "../../path.php";
+    include SITE_ROOT."/app/controllers/posts.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,28 +29,43 @@ include_once "../../path.php";
                             </div>
                             <div class="add-post">
                                 <h2 class="posts-title">Добавление нового поста</h2>
-                                <form class="col-12 m-auto" action="create.php" method="post">
+                                <form class="col-12 m-auto" action="create.php" method="post" enctype="multipart/form-data">
+                                    <? if (!empty($status_message['success'])) echo "<p class='success'>{$status_message['success']}</p>"?>
                                     <div class="mb-3">
                                         <label class="form-label">Название</label>
-                                        <input type="email" class="form-control" name="title" value="" placeholder="Введите название поста" required>
+                                        <input type="text" class="form-control" name="title" value="<?=$title?>" placeholder="Введите название поста">
+                                        <? if (!empty($status_message['title'])) echo "<p class='error'>{$status_message['title']}</p>"; ?>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Содержание поста</label>
-                                        <textarea class="form-control" id="editor" rows="10" name="text" placeholder="Введите содержимое поста" required></textarea>
+                                        <textarea class="form-control" id="editor" rows="10" name="content" placeholder="Введите содержимое поста"><?=$content?></textarea>
+                                        <? if (!empty($status_message['content'])) echo "<p class='error'>{$status_message['content']}</p>"; ?>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Картинка</label>
-                                        <input class="form-control" id="file" type="file">
+                                        <input class="form-control" type="file" name="img">
+                                        <? if (!empty($status_message['img'])) echo "<p class='error'>{$status_message['img']}</p>"; ?>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Категория поста</label>
-                                        <select class="form-select" name="categories" id="">
+                                        <select class="form-select" name="category">
                                             <option value="1" selected disabled>Выберите категорию поста</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <? foreach ($categories as $category): ?>
+                                            <option value="<?=$category['id']?>"><?=$category['name']?></option>
+                                            <? endforeach; ?>
                                         </select>
+                                        <? if (!empty($status_message['category'])) echo "<p class='error'>{$status_message['category']}</p>"; ?>
                                     </div>
-                                    <button type="submit" class="btn btn-success w-100" name="button-create-post" value="send">Добавить пост</button>
+                                    <div class="mb-3">
+                                        <label class="form-label">Статус публикации</label>
+                                        <br>
+                                        <input type="checkbox" id="publish" name="publish" <? if ($publish === "P") echo "checked"; ?>>
+                                        <label class="form-label" for="publish">Опубликовать</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <? if (!empty($status_message['more'])) echo "<p class='error'>{$status_message['more']}</p>"; ?>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100" name="create-post">Добавить пост</button>
                                 </form>
                             </div>
                         </div>

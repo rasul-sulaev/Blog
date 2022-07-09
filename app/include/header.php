@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "path.php";
+    include_once "path.php";
 ?>
         <header class="container-fluid">
             <div class="container">

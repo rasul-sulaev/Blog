@@ -1,5 +1,5 @@
 <?php
-include_once "../path.php";
+    include_once "../path.php";
 ?>
 
 <!doctype html>

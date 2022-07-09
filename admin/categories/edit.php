@@ -1,6 +1,6 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT']."/path.php";
-    include $_SERVER['DOCUMENT_ROOT']."/app/controllers/categories.php";
+    include_once "../../path.php";
+    include SITE_ROOT."/app/controllers/categories.php";
 ?>
 <!doctype html>
 <html lang="en">

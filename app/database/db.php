@@ -98,9 +98,6 @@ function insert($table, $params) {
 
     $sql = "INSERT INTO $table ($column) VALUES ($mask)";
 
-//    tt($sql);
-//    exit();
-
     $query = $db->prepare($sql);
     $query->execute($params);
     queryCheckError($query);
@@ -143,11 +140,26 @@ function delete($table, $id) {
 
 
 
+// Выборка записей с автором в админку
+function selectAllFromPostWithUser($users, $posts, $categories) {
+    global $db;
 
-//$params = [
-//    'username' => 'ras',
-//    'email' => 'ras',
-//    'password' => '123',
-//];
-//
-//insert('users', $params);
+    $sql = "SELECT  
+        $posts.id AS id_post, 
+        $posts.title,
+        $posts.content,
+        $posts.img,
+        $posts.status,
+        $posts.createdAt,
+        $users.id AS id_user,
+        $users.username,
+        $categories.name AS category_name
+        FROM $posts 
+        JOIN $users ON $users.id = $posts.id_user  
+        JOIN $categories ON $posts.id_category = $categories.id";
+
+    $query = $db->prepare($sql);
+    $query->execute();
+    queryCheckError($query);
+    return $query->fetchAll();
+}

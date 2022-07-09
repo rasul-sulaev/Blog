@@ -1,7 +1,7 @@
 <?php
-include_once "../../path.php";
+    include_once "../../path.php";
+    include SITE_ROOT."/app/controllers/posts.php";
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,21 +34,35 @@ include_once "../../path.php";
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Название</th>
+                                            <th scope="col">Категория</th>
                                             <th scope="col">Автор</th>
                                             <th scope="col">Дата публикации</th>
+                                            <th scope="col">Статус</th>
                                             <th scope="col">Редактировать</th>
                                             <th scope="col">Удалить</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
+                                        <? foreach ($userPosts as $post): ?>
                                         <tr scope="row">
-                                            <th>1</th>
-                                            <td><a href="#">Title</a></td>
-                                            <td>author</td>
-                                            <td>23.06.2022</td>
+                                            <th><?=$post['id_post']?></th>
+                                            <td><a href="<?=BASE_URL.'posts/'.$post['id_post']?>"><?=$post['title']?></a></td>
+                                            <td><?=$post['category_name']?></td>
+                                            <td><?=$post['username']?></td>
+                                            <td><?=$post['createdAt']?></td>
+                                            <td>
+                                                <? if ($post['status'] === 'P') {
+                                                    echo "Опубликован";
+                                                } elseif ($post['status'] === 'N') {
+                                                    echo "Не опубликован";
+                                                } elseif ($post['status'] === 'D') {
+                                                    echo "Черновик";
+                                                }?>
+                                            </td>
                                             <td><a href="#">edit</a></td>
                                             <td><a href="#">delete</a></td>
                                         </tr>
+                                        <? endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
