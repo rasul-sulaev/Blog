@@ -15,7 +15,7 @@ $name = !empty($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
 $description = !empty($_POST['description']) ? htmlspecialchars($_POST['description']) : '';
 
 
-/** Массив всех категорий **/
+/** Массив из всех категорий **/
 $categories = selectAll('categories');
 
 /** Обработчик формы Создания категории **/

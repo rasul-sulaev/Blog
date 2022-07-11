@@ -1,5 +1,6 @@
 <?php
     include_once "../../path.php";
+    include SITE_ROOT."/app/controllers/admin/UsersController.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,24 +31,26 @@
                                 </div>
                                 <table class="table table-light table-bordered table-striped table-hover">
                                     <thead class="table-light">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Логин</th>
-                                        <th scope="col">Роль</th>
-                                        <th scope="col">Дата регистрации</th>
-                                        <th scope="col">Редактировать</th>
-                                        <th scope="col">Удалить</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Логин</th>
+                                            <th scope="col">Роль</th>
+                                            <th scope="col">Дата регистрации</th>
+                                            <th scope="col">Редактировать</th>
+                                            <th scope="col">Удалить</th>
+                                        </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
-                                    <tr scope="row">
-                                        <th>1</th>
-                                        <td><a href="#">Rasul</a></td>
-                                        <td>admin</td>
-                                        <td>23.06.2022</td>
-                                        <td><a href="#">edit</a></td>
-                                        <td><a href="#">delete</a></td>
-                                    </tr>
+                                        <? foreach ($users as $user): ?>
+                                        <tr scope="row">
+                                            <th><?=$user['id']?></th>
+                                            <td><a href="#"><?=$user['username']?></a></td>
+                                            <td><?=$user['admin'] === 1 ?  "Админ" : "Пользователь"; ?></td>
+                                            <td><?=$user['createdAt']?></td>
+                                            <td><a href="#">edit</a></td>
+                                            <td><a href="#">delete</a></td>
+                                        </tr>
+                                        <? endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

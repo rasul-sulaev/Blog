@@ -2,7 +2,6 @@
     include_once "path.php";
     include SITE_ROOT . "/app/controllers/admin/PostsController.php";
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -62,7 +61,10 @@
                         <div class="main-content col-12 col-md-9">
                             <div class="posts">
                                 <h2>Последние публикации</h2>
-                                <? foreach ($userPosts as $post): ?>
+                                <?
+                                foreach ($userPosts as $post):
+                                    if ($post['status'] === 'P'):
+                                ?>
                                 <div class="post row">
                                     <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
                                     <div class="post__text col-12 col-md-8">
@@ -80,7 +82,10 @@
                                         <p class="post__preview-text"><?=$post['content']?></p>
                                     </div>
                                 </div>
-                                <? endforeach; ?>
+                                <?
+                                    endif;
+                                endforeach;
+                                ?>
                             </div>
                         </div>
                         <div class="sidebar col-12 col-md-3">
