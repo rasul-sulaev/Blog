@@ -62,14 +62,20 @@
                         <div class="main-content col-12 col-md-9">
                             <div class="posts">
                                 <h2>Последние публикации</h2>
-                                <? foreach ($posts as $post): ?>
+                                <? foreach ($userPosts as $post): ?>
                                 <div class="post row">
                                     <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
                                     <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href=""><?=$post['title']?></a>
+                                        <a class="post__title" href="<?= BASE_URL."post/".$post['id_post']?>"><?=$post['title']?></a>
                                         <div class="post__info">
-                                            <i class="fa fa-user"> Имя Автора</i>
-                                            <i class="fa fa-calendar"> Март 11, 2019</i>
+                                            <span>
+                                                <i class="fa fa-user"></i>
+                                                <?=$post['username']?>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-calendar"></i>
+                                                <?=$post['createdAt']?>
+                                            </span>
                                         </div>
                                         <p class="post__preview-text"><?=$post['content']?></p>
                                     </div>

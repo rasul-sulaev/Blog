@@ -205,3 +205,8 @@ main > .content {
   width: auto !important;
   font-size: inherit !important;
 }
+
+.posts-table select {
+  padding: 6px 10px !important;
+  width: auto !important;
+}

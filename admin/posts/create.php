@@ -58,9 +58,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Статус публикации</label>
-                                        <br>
-                                        <input type="checkbox" id="publish" name="publish" <? if ($publish === "P") echo "checked"; ?>>
-                                        <label class="form-label" for="publish">Опубликовать</label>
+                                        <select class="form-select" name="status">
+                                            <option value="N" <? if ($status === "N") echo "selected"; ?>>Не опубликовать</option>
+                                            <option value="P" <? if ($status === "P") echo "selected"; ?>>Опубликовать</option>
+                                            <option value="D" <? if ($status === "D") echo "selected"; ?>>В черновик</option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <? if (!empty($status_message['more'])) echo "<p class='error'>{$status_message['more']}</p>"; ?>

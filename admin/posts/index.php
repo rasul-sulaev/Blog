@@ -23,7 +23,7 @@
                     <div class="row h-100">
                         <? include "../include/sidebar.php"; ?>
                         <div class="main-content col-12 col-md-9">
-                            <div class="posts">
+                            <div class="posts-table">
                                 <h2 class="posts-title">Управление постами</h2>
                                 <div class="d-flex gap-2 my-3">
                                     <a class="btn btn-success w-auto" href="<?= BASE_URL.'admin/posts/create.php'; ?>">Добавить</a> <br>
@@ -38,29 +38,34 @@
                                             <th scope="col">Автор</th>
                                             <th scope="col">Дата публикации</th>
                                             <th scope="col">Статус</th>
-                                            <th scope="col">Редактировать</th>
-                                            <th scope="col">Удалить</th>
+                                            <th scope="col">Управление</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
                                         <? foreach ($userPosts as $post): ?>
-                                        <tr scope="row">
+                                        <tr scope="row" class="align-middle">
                                             <th><?=$post['id_post']?></th>
-                                            <td><a href="<?=BASE_URL.'posts/'.$post['id_post']?>"><?=$post['title']?></a></td>
+                                            <td>
+                                                <img src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" style="width: 40px; height: 40px" alt="">
+                                                <a href="<?=BASE_URL.'posts/'.$post['id_post']?>"><?=$post['title']?></a>
+                                            </td>
                                             <td><?=$post['category_name']?></td>
                                             <td><?=$post['username']?></td>
                                             <td><?=$post['createdAt']?></td>
                                             <td>
-                                                <? if ($post['status'] === 'P') {
-                                                    echo "Опубликован";
-                                                } elseif ($post['status'] === 'N') {
-                                                    echo "Не опубликован";
-                                                } elseif ($post['status'] === 'D') {
-                                                    echo "Черновик";
-                                                }?>
+                                                <form action="edit.php" method="GET">
+                                                    <input type="hidden" name="id" value="<?=$post['id_post']?>">
+                                                    <select name="status" onchange="this.form.submit()">
+                                                        <option value="N" <? if ($post['status'] === "N") echo "selected"; ?>>Не опубликован</option>
+                                                        <option value="P" <? if ($post['status'] === "P") echo "selected"; ?>>Опубликован</option>
+                                                        <option value="D" <? if ($post['status'] === "D") echo "selected"; ?>>В черновик</option>
+                                                    </select>
+                                                </form>
                                             </td>
-                                            <td><a href="<?=BASE_URL."admin/posts/edit.php?id={$post['id_post']}"?>">edit</a></td>
-                                            <td><a href="<?=BASE_URL."admin/posts/edit.php?delete_id={$post['id_post']}"?>">delete</a></td>
+                                            <td>
+                                                <a href="<?=BASE_URL."admin/posts/edit.php?id={$post['id_post']}"?>">edit</a> |
+                                                <a href="<?=BASE_URL."admin/posts/edit.php?delete_id={$post['id_post']}"?>">delete</a>
+                                            </td>
                                         </tr>
                                         <? endforeach; ?>
                                     </tbody>

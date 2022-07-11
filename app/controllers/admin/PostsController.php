@@ -18,7 +18,8 @@ $title      = !empty($_POST['title']) ? htmlspecialchars(trim($_POST['title'])) 
 $content    = !empty($_POST['content']) ? trim($_POST['content']) : '';
 $upload_img = isset($_FILES['img']) ? $_FILES['img'] : '';
 $category   = !empty($_POST['category']) ? htmlspecialchars($_POST['category']) : '';
-$publish    = isset($_POST['publish']) ? 'P' : 'N';
+//$publish    = isset($_POST['publish']) ? 'P' : 'N';
+$status     = !empty($_POST['status']) ? htmlspecialchars($_POST['status']) : 'N';
 
 
 // Массив категорий
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-post'])) {
             "content"     => $content,
             "img"         => $upload_img_name,
             "id_category" => $category,
-            "status"      => $publish
+            "status"      => $status
         ];
 
         insert('posts', $post);
@@ -78,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-post'])) {
         $title = '';
         $content = '';
         $category = '';
+        $status = '';
         unset($_FILES['img']);
     }
 }
@@ -91,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $content  = $post['content'];
     $img      = $post['img'];
     $category = $post['id_category'];
-    $publish  = $post['status'];
+    $status   = $post['status'];
 }
 
 
@@ -146,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-post'])) {
             "content"     => $content,
             "img"         => $upload_img_name ? $upload_img_name : $img,
             "id_category" => $category,
-            "status"      => $publish
+            "status"      => $status
         ];
 
         update('posts', (int)$id, $post);
@@ -162,7 +164,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
     if (!empty($id)) {
         $post = selectOne('posts', ["id" => $id]);
 
+        // Удаление записи из БД
         delete('posts', (int)$id);
+
+        // Удаление картинки с сервера
+        $img = ROOT_PATH . "/uploads/img/posts/" . $post['img'];
+        unlink($img);
+
+        header('location: /admin/posts/');
+    }
+}
+
+
+
+/** Обработка формы Редактирования статуса поста со страницы Посты **/
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['status'])) {
+    $id = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
+    $status = !empty($_GET['status']) ? htmlspecialchars($_GET['status']) : '';
+
+    // Прверка полей формы на ошибки
+    if (!$post = selectOne('posts', ["id" => $id])) {
+        die("Error 404 - Не существует такой пост!");
+    } elseif ($status === '') {
+        die("Укажите значение для статуса поста!");
+    } elseif (!in_array($status, ['N', 'P', 'D'])) {
+        die("Укажите правильное значение для статуса поста!");
+    } else {
+        // Обновление поля `status` в таблице `posts` БД
+        update('posts', $id, ["status" => $status]);
+
         header('location: /admin/posts/');
     }
 }
