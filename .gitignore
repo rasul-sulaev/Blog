@@ -1,4 +1,4 @@
 # dependencies
 .git
 .idea
-.uploas/img/posts/*
+/uploas/img/posts/*
