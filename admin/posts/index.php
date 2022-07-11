@@ -1,6 +1,6 @@
 <?php
     include_once "../../path.php";
-    include SITE_ROOT."/app/controllers/posts.php";
+    include SITE_ROOT."/app/controllers/admin/PostsController.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -59,8 +59,8 @@
                                                     echo "Черновик";
                                                 }?>
                                             </td>
-                                            <td><a href="#">edit</a></td>
-                                            <td><a href="#">delete</a></td>
+                                            <td><a href="<?=BASE_URL."admin/posts/edit.php?id={$post['id_post']}"?>">edit</a></td>
+                                            <td><a href="<?=BASE_URL."admin/posts/edit.php?delete_id={$post['id_post']}"?>">delete</a></td>
                                         </tr>
                                         <? endforeach; ?>
                                     </tbody>

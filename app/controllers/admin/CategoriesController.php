@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
 
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
 $status_message = [
@@ -10,7 +10,7 @@ $status_message = [
 ];
 
 // Данные из полей с формы (если не были отправлены POST запросом, то будет пустая строка)
-$id = !empty($_GET['id']) ? htmlspecialchars($_GET['id']) : '';
+$id = !empty($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
 $name = !empty($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
 $description = !empty($_POST['description']) ? htmlspecialchars($_POST['description']) : '';
 
@@ -48,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-category'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $category = selectOne('categories', ["id" => $id]);
 
-    $name = isset($category['name']) ? $category['name'] : '';
-    $description = isset($category['description']) ? $category['description'] : '';
+    $name = $category['name'];
+    $description = $category['description'];
 }
 
 

@@ -1,6 +1,6 @@
 <?php
     include_once "../../path.php";
-    include SITE_ROOT."/app/controllers/categories.php";
+    include SITE_ROOT."/app/controllers/admin/CategoriesController.php";
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,5 +1,5 @@
 <?php
-    include "app/controllers/login&reg_form_handlers.php";
+    include "app/controllers/UserController.php";
 ?>
 <!doctype html>
 <html lang="en">
