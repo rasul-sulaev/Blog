@@ -29,7 +29,12 @@ input, textarea
 		border-color: $green !important
 		box-shadow: none !important
 	
-	
+blockquote
+	margin: 12px 0
+	padding: 0 12px
+	display: block
+	border-left: 4px solid $green-hover
+	background: transparent
 
 	
 a
@@ -159,6 +164,7 @@ main
 			margin-top: 20px
 		&__img
 			padding: 0
+			max-height: 174px
 			object-fit: cover
 		&__title
 			font-size: 24px
@@ -293,6 +299,12 @@ footer
 		margin: 20px 0
 		height: 400px
 		object-fit: cover
+	&__text
+		a
+			color: $green-hover
+			text-decoration: underline
+			&:hover
+				text-decoration: none
 	
 		
 		
@@ -320,4 +332,3 @@ footer
 					text-decoration: underline
 					&:hover
 						text-decoration: none
-		

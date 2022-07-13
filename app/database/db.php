@@ -171,31 +171,28 @@ function selectAllFromPostWithUser($users, $posts, $categories, $where = NULL) {
 
 
 
+/** Поиск по заголовкам и содержимому *
+ * @param $query
+ * @param $users
+ * @param $posts
+ * @param $categories
+ * @return array
+ */
+function searchInTitleAndContent($query, $users, $posts, $categories) {
+    global $db;
 
-///** Выборка записей с автором и категорией в админку
-// * @param $users
-// * @param $posts
-// * @param $categories
-// * @param null $where
-// * @return array
-// */
-//function selectAllFromPostWithUser($users, $posts, $categories, $where = NULL) {
-//    global $db;
-//
-//    $sql = "SELECT
-//        u.username,
-//        p.*,
-//        cat.name AS category_name
-//        FROM $posts AS p
-//        JOIN $users AS u ON u.id = p.id_user
-//        JOIN $categories AS cat ON p.id_category = cat.id ";
-//
-//    if ($where) {
-//        $sql .= $where;
-//    }
-//
-//    $query = $db->prepare($sql);
-//    $query->execute();
-//    queryCheckError($query);
-//    return $query->fetchAll();
-//}
+    $query = trim(strip_tags(stripslashes(htmlspecialchars($query))));
+    $sql = "SELECT
+        u.username,
+        p.*,
+        cat.name AS category_name
+        FROM $posts AS p 
+        JOIN $users AS u ON u.id = p.id_user
+        JOIN $categories AS cat ON p.id_category = cat.id WHERE p.status = 'P' 
+        AND p.title LIKE '%$query%' OR p.content LIKE '%$query%'";
+
+    $query = $db->prepare($sql);
+    $query->execute();
+    queryCheckError($query);
+    return $query->fetchAll();
+}

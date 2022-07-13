@@ -31,34 +31,25 @@
                             <div class="single_post">
                                 <h2 class="single_post__title"><?=$post['title']?></h2>
                                 <div class="single_post__info">
-                                    <i class="fa fa-user"> <?=$post['username']?></i>
-                                    <i class="fa fa-calendar"> <?=$post['createdAt']?></i>
+                                    <span>
+                                        <i class="fa fa-user"></i>
+                                        <?=$post['username']?>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-calendar"></i>
+                                        <?=$post['createdAt']?>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-folder"></i>
+                                        <?=$post['category_name']?>
+                                    </span>
                                 </div>
                                 <img class="single_post__img col-12" src="<?=BASE_URL."uploads/img/posts/".$post['img'];?>" alt="">
                                 <div class="single_post__text"><?=$post['content']?></div>
                             </div>
                             <? endif; ?>
                         </div>
-                        <div class="sidebar col-12 col-md-3" style="padding-top: 26px">
-                            <div class="content">
-                                <section class="search">
-                                    <h4 class="title">Поиск</h4>
-                                    <form action="" method="get">
-                                        <input type="text" name="search-term" class="form-control" placeholder="Найти...">
-                                    </form>
-                                </section>
-                                <section class="categories">
-                                    <h4 class="title">Категории</h4>
-                                    <ul>
-                                        <li><a href="#">Прграммирование</a></li>
-                                        <li><a href="#">Дизайн</a></li>
-                                        <li><a href="#">Визуализация</a></li>
-                                        <li><a href="#">Кейсы</a></li>
-                                        <li><a href="#">Мотивация</a></li>
-                                    </ul>
-                                </section>
-                            </div>
-                        </div>
+                        <?php include("app/include/sidebar.php"); ?>
                     </div>
                 </div>
             </section>

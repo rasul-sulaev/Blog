@@ -102,24 +102,7 @@
                                 ?>
                             </div>
                         </div>
-                        <div class="sidebar col-12 col-md-3">
-                            <div class="content">
-                                <section class="search">
-                                    <h4 class="title">Поиск</h4>
-                                    <form action="" method="get">
-                                        <input type="text" name="search-term" class="form-control" placeholder="Найти...">
-                                    </form>
-                                </section>
-                                <section class="categories">
-                                    <h4 class="title">Категории</h4>
-                                    <ul>
-                                        <? foreach ($categories as $category): ?>
-                                        <li><a href="#"><?=$category['name']?></a></li>
-                                        <? endforeach; ?>
-                                    </ul>
-                                </section>
-                            </div>
-                        </div>
+                        <?php include("app/include/sidebar.php"); ?>
                     </div>
                 </div>
             </section>
