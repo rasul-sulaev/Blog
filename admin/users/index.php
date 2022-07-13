@@ -23,7 +23,7 @@
                     <div class="row h-100">
                         <? include "../include/sidebar.php"; ?>
                         <div class="main-content col-12 col-md-9">
-                            <div class="posts">
+                            <div class="posts-table">
                                 <h2 class="posts-title">Управление пользователями</h2>
                                 <div class="d-flex gap-2 my-3">
                                     <a class="btn btn-success w-auto" href="<?= BASE_URL.'admin/users/create.php' ;?>">Добавить</a> <br>
@@ -34,10 +34,10 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Логин</th>
-                                            <th scope="col">Роль</th>
+                                            <th scope="col">Почта</th>
                                             <th scope="col">Дата регистрации</th>
-                                            <th scope="col">Редактировать</th>
-                                            <th scope="col">Удалить</th>
+                                            <th scope="col">Роль</th>
+                                            <th scope="col">Управление</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
@@ -45,10 +45,21 @@
                                         <tr scope="row">
                                             <th><?=$user['id']?></th>
                                             <td><a href="#"><?=$user['username']?></a></td>
-                                            <td><?=$user['admin'] === 1 ?  "Админ" : "Пользователь"; ?></td>
+                                            <td><a href="#"><?=$user['email']?></a></td>
                                             <td><?=$user['createdAt']?></td>
-                                            <td><a href="#">edit</a></td>
-                                            <td><a href="#">delete</a></td>
+                                            <td>
+                                                <form action="edit.php" method="GET">
+                                                    <input type="hidden" name="id" value="<?=$user['id']?>">
+                                                    <select name="role" onchange="this.form.submit()">
+                                                        <option value="admin" <? if ($user['role'] === 'admin') echo "selected"; ?>>Админ</option>
+                                                        <option value="user" <? if ($user['role'] === "user") echo "selected"; ?>>Пользователь</option>
+                                                    </select>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <a href="<?=BASE_URL."admin/users/edit.php?id={$user['id']}"?>">edit</a> |
+                                                <a href="<?=BASE_URL."admin/users/edit.php?delete_id={$user['id']}"?>">delete</a>
+                                            </td>
                                         </tr>
                                         <? endforeach; ?>
                                     </tbody>

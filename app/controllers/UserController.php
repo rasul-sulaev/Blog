@@ -5,7 +5,7 @@ require "app/database/db.php";
 function writeToSessionUser($user) {
     $_SESSION['id']    = $user['id'];
     $_SESSION['login'] = $user['username'];
-    $_SESSION['admin'] = $user['admin'];
+    $_SESSION['role']  = $user['role'];
 }
 
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
@@ -55,12 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
 
         // Получаем данные зарегестрированного пользователя
         $user = selectOne('users', ['id' => $id]);
-        writeToSessionUser($user);
 
         // Редирект на Главную старницу сайта
         header( "Refresh:3; url='/'",  true, 302);
         list($login, $email) = ['', ''];
-
     }
 }
 
@@ -106,7 +104,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-login'])) 
         if (isset($_SESSION[$email])) unset($_SESSION[$email]);
 
         // Редирект на страницу Админки, если пользователь админ, если нет, то редиректим на Главную страницу сайта
-        if ($_SESSION['admin']) {
+        if ($_SESSION['role'] === 'admin') {
             header('location: /admin/');
         } else {
             header('location: /');
