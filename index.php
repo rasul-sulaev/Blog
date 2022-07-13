@@ -2,8 +2,10 @@
     include_once "path.php";
     include SITE_ROOT . "/app/controllers/admin/PostsController.php";
 
+    // Массив опубликованных постов
     $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P'");
 
+    // Массив топ постов
     $top_posts = selectAll('posts', ['top_post' => 1]);
 ?>
 <!doctype html>
@@ -24,6 +26,7 @@
         <main>
             <section class="slider">
                 <div class="container">
+                    <? if ($top_posts): ?>
                     <div class="row">
                         <h2 class="slider-title">Топ публикации</h2>
                     </div>
@@ -52,6 +55,7 @@
                         </button>
                     </div>
                 </div>
+                <? endif; ?>
             </section>
             <section class="content">
                 <div class="container">
