@@ -21,7 +21,7 @@
                                     <?= $_SESSION['login']; ?>
                                 </a>
                                 <ul class="menu sub-menu">
-                                    <?php if ($_SESSION['admin']): ?>
+                                    <?php if ($_SESSION['role'] === 'admin'): ?>
                                     <li class="menu__item"><a href="<?= BASE_URL.'admin/'; ?>">Админ панель</a></li>
                                     <? endif; ?>
                                     <li class="menu__item"><a href="<?= BASE_URL.'logout.php'; ?>">Выход</a></li>

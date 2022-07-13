@@ -125,6 +125,7 @@ function update($table, $id, $params) {
 }
 
 
+
 /** Удаление строки из таблицы БД *
  * @param $table
  * @param $id
@@ -140,26 +141,61 @@ function delete($table, $id) {
 
 
 
-// Выборка записей с автором в админку
-function selectAllFromPostWithUser($users, $posts, $categories) {
+/** Выборка записей с автором и категорией в админку
+ * @param $users
+ * @param $posts
+ * @param $categories
+ * @param null $where
+ * @return array
+ */
+function selectAllFromPostWithUser($users, $posts, $categories, $where = NULL) {
     global $db;
 
-    $sql = "SELECT  
-        $posts.id AS id_post, 
-        $posts.title,
-        $posts.content,
-        $posts.img,
-        $posts.status,
-        $posts.createdAt,
-        $users.id AS id_user,
-        $users.username,
-        $categories.name AS category_name
-        FROM $posts 
-        JOIN $users ON $users.id = $posts.id_user  
-        JOIN $categories ON $posts.id_category = $categories.id";
+    $sql = "SELECT
+        u.username,
+        p.*,
+        cat.name AS category_name
+        FROM $posts AS p 
+        JOIN $users AS u ON u.id = p.id_user
+        JOIN $categories AS cat ON p.id_category = cat.id ";
+
+    if ($where) {
+        $sql .= $where;
+    }
 
     $query = $db->prepare($sql);
     $query->execute();
     queryCheckError($query);
     return $query->fetchAll();
 }
+
+
+
+
+///** Выборка записей с автором и категорией в админку
+// * @param $users
+// * @param $posts
+// * @param $categories
+// * @param null $where
+// * @return array
+// */
+//function selectAllFromPostWithUser($users, $posts, $categories, $where = NULL) {
+//    global $db;
+//
+//    $sql = "SELECT
+//        u.username,
+//        p.*,
+//        cat.name AS category_name
+//        FROM $posts AS p
+//        JOIN $users AS u ON u.id = p.id_user
+//        JOIN $categories AS cat ON p.id_category = cat.id ";
+//
+//    if ($where) {
+//        $sql .= $where;
+//    }
+//
+//    $query = $db->prepare($sql);
+//    $query->execute();
+//    queryCheckError($query);
+//    return $query->fetchAll();
+//}

@@ -44,17 +44,21 @@
                                     <tbody class="table-group-divider">
                                         <? foreach ($userPosts as $post): ?>
                                         <tr scope="row" class="align-middle">
-                                            <th><?=$post['id_post']?></th>
+                                            <th><?=$post['id']?></th>
                                             <td>
                                                 <img src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" style="width: 40px; height: 40px" alt="">
-                                                <a href="<?=BASE_URL.'posts/'.$post['id_post']?>"><?=$post['title']?></a>
+                                                <a href="<?=BASE_URL.'post.php?id='.$post['id']?>"><?=
+                                                    strlen($post['title']) >= 35 ?
+                                                    mb_substr($post['title'], 0, 35, 'UTF8').'...' :
+                                                    $post['title'];
+                                                ?></a>
                                             </td>
                                             <td><?=$post['category_name']?></td>
                                             <td><?=$post['username']?></td>
                                             <td><?=$post['createdAt']?></td>
                                             <td>
                                                 <form action="edit.php" method="GET">
-                                                    <input type="hidden" name="id" value="<?=$post['id_post']?>">
+                                                    <input type="hidden" name="id" value="<?=$post['id']?>">
                                                     <select name="status" onchange="this.form.submit()">
                                                         <option value="N" <? if ($post['status'] === "N") echo "selected"; ?>>Не опубликован</option>
                                                         <option value="P" <? if ($post['status'] === "P") echo "selected"; ?>>Опубликован</option>
@@ -63,8 +67,8 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="<?=BASE_URL."admin/posts/edit.php?id={$post['id_post']}"?>">edit</a> |
-                                                <a href="<?=BASE_URL."admin/posts/edit.php?delete_id={$post['id_post']}"?>">delete</a>
+                                                <a href="<?=BASE_URL."admin/posts/edit.php?id={$post['id']}"?>">edit</a> |
+                                                <a href="<?=BASE_URL."admin/posts/edit.php?delete_id={$post['id']}"?>">delete</a>
                                             </td>
                                         </tr>
                                         <? endforeach; ?>

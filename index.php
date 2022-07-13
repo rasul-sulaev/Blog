@@ -1,6 +1,8 @@
 <?php
     include_once "path.php";
     include SITE_ROOT . "/app/controllers/admin/PostsController.php";
+
+    $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P'");
 ?>
 <!doctype html>
 <html lang="en">
@@ -62,13 +64,17 @@
                             <div class="posts">
                                 <h2>Последние публикации</h2>
                                 <?
-                                foreach ($userPosts as $post):
+                                foreach ($posts as $post):
                                     if ($post['status'] === 'P'):
                                 ?>
                                 <div class="post row">
                                     <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
                                     <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href="<?= BASE_URL."post/".$post['id_post']?>"><?=$post['title']?></a>
+                                        <a class="post__title" href="<?= BASE_URL."post.php?id=".$post['id']?>"><?=
+                                            strlen($post['title']) >= 100 ?
+                                            mb_substr($post['title'], 0, 100, 'UTF8').'...' :
+                                            $post['title'];
+                                        ?></a>
                                         <div class="post__info">
                                             <span>
                                                 <i class="fa fa-user"></i>
@@ -78,8 +84,16 @@
                                                 <i class="fa fa-calendar"></i>
                                                 <?=$post['createdAt']?>
                                             </span>
+                                            <span>
+                                                <i class="fa fa-folder"></i>
+                                                <?=$post['category_name']?>
+                                            </span>
                                         </div>
-                                        <p class="post__preview-text"><?=$post['content']?></p>
+                                        <p class="post__preview-text"><?=
+                                            strlen($post['content']) >= 350 ?
+                                            mb_substr($post['content'], 0, 350, 'UTF8').'...' :
+                                            $post['content'];
+                                        ?></p>
                                     </div>
                                 </div>
                                 <?

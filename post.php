@@ -1,3 +1,7 @@
+<?php
+    include_once "path.php";
+    include SITE_ROOT.'/app/controllers/PostController.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,37 +22,22 @@
                 <div class="container">
                     <div class="row">
                         <div class="main-content col-12 col-md-9">
+                            <? if (empty($post)): ?>
                             <div class="single_post">
-                                <h2 class="single_post__title">Прикольные статья на тему динамического сайта</h2>
-                                <div class="single_post__info">
-                                    <i class="fa fa-user"> Имя Автора</i>
-                                    <i class="fa fa-calendar"> Март 11, 2019</i>
-                                </div>
-                                <img class="single_post__img col-12" src="https://blog.templatetoaster.com/wp-content/uploads/2020/05/Bootstrap-5-Facebbok.png" alt="">
-                                <div class="single_post__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Amet aperiam asperiores autem eligendi eos esse eum excepturi, facere,
-                                    fugit iste magnam minima nam obcaecati odit quod ratione rerum soluta voluptatem.</p>
-                                </div>
+                                <h1>Error 404</h1>
+                                <h2 class="single_post__title">Ничего не найдено</h2>
                             </div>
+                            <? else: ?>
+                            <div class="single_post">
+                                <h2 class="single_post__title"><?=$post['title']?></h2>
+                                <div class="single_post__info">
+                                    <i class="fa fa-user"> <?=$post['username']?></i>
+                                    <i class="fa fa-calendar"> <?=$post['createdAt']?></i>
+                                </div>
+                                <img class="single_post__img col-12" src="<?=BASE_URL."uploads/img/posts/".$post['img'];?>" alt="">
+                                <div class="single_post__text"><?=$post['content']?></div>
+                            </div>
+                            <? endif; ?>
                         </div>
                         <div class="sidebar col-12 col-md-3" style="padding-top: 26px">
                             <div class="content">
