@@ -18,8 +18,9 @@ $title      = !empty($_POST['title']) ? htmlspecialchars(trim($_POST['title'])) 
 $content    = !empty($_POST['content']) ? trim($_POST['content']) : '';
 $upload_img = isset($_FILES['img']) ? $_FILES['img'] : '';
 $category   = !empty($_POST['category']) ? htmlspecialchars($_POST['category']) : '';
-//$publish    = isset($_POST['publish']) ? 'P' : 'N';
 $status     = !empty($_POST['status']) ? htmlspecialchars($_POST['status']) : 'N';
+$top_post   = isset($_GET['top_post']) ? htmlspecialchars($_GET['top_post']) : NULL;
+
 
 
 // Массив категорий
@@ -192,6 +193,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['status'])) {
     } else {
         // Обновление поля `status` в таблице `posts` БД
         update('posts', $id, ["status" => $status]);
+
+        header('location: /admin/posts/');
+    }
+}
+
+
+/** Обработка формы Редактирования ТОП поста со страницы Посты **/
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_for_top'])) {
+    $id = isset($_GET['id_for_top']) ? htmlspecialchars(trim($_GET['id_for_top'])) : '';
+    $top_post = !empty($_GET['top_post']) ? htmlspecialchars($_GET['top_post']) : '';
+
+    // Прверка полей формы на ошибки
+    if (!$post = selectOne('posts', ["id" => $id])) {
+        die("Error 404 - Не существует такой пост!");
+    } else {
+        // Обновление поля `status` в таблице `posts` БД
+        update('posts', $id, ["top_post" => !empty($top_post) ? 1 : NULL]);
 
         header('location: /admin/posts/');
     }

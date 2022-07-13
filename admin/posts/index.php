@@ -38,6 +38,7 @@
                                             <th scope="col">Автор</th>
                                             <th scope="col">Дата публикации</th>
                                             <th scope="col">Статус</th>
+                                            <th scope="col">ТОП</th>
                                             <th scope="col">Управление</th>
                                         </tr>
                                     </thead>
@@ -60,10 +61,16 @@
                                                 <form action="edit.php" method="GET">
                                                     <input type="hidden" name="id" value="<?=$post['id']?>">
                                                     <select name="status" onchange="this.form.submit()">
-                                                        <option value="N" <? if ($post['status'] === "N") echo "selected"; ?>>Не опубликован</option>
-                                                        <option value="P" <? if ($post['status'] === "P") echo "selected"; ?>>Опубликован</option>
-                                                        <option value="D" <? if ($post['status'] === "D") echo "selected"; ?>>В черновик</option>
+                                                        <option value="N" <? if ($post['status'] === "N") echo 'selected'; ?>>Не опубликован</option>
+                                                        <option value="P" <? if ($post['status'] === "P") echo 'selected'; ?>>Опубликован</option>
+                                                        <option value="D" <? if ($post['status'] === "D") echo 'selected'; ?>>В черновик</option>
                                                     </select>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="edit.php" method="GET">
+                                                    <input type="hidden" name="id_for_top" value="<?=$post['id']?>">
+                                                    <input class="top_post" type="checkbox" name="top_post" <? if ($post['top_post']) echo 'checked'?> onchange="this.form.submit()">
                                                 </form>
                                             </td>
                                             <td>

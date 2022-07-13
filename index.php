@@ -3,6 +3,8 @@
     include SITE_ROOT . "/app/controllers/admin/PostsController.php";
 
     $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P'");
+
+    $top_posts = selectAll('posts', ['top_post' => 1]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,24 +29,18 @@
                     </div>
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://miro.medium.com/max/1200/1*RuPWuJwZ97_yCQtbFChfhg.png" class="d-block w-100" alt="...">
+                            <? foreach ($top_posts as $key => $post): ?>
+                            <div class="carousel-item <? if ($key === 0) echo 'active'; ?>">
+                                <img src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <a class="title" href="">Метка первого слайда</a>
+                                    <a class="title" href="<?= BASE_URL."post.php?id=".$post['id']?>"><?=
+                                        strlen($post['title']) >= 100 ?
+                                        mb_substr($post['title'], 0, 100, 'UTF8').'...' :
+                                        $post['title'];
+                                    ?></a>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <img src="https://fuzeservers.ru/wp-content/uploads/e/d/9/ed962793db647bb4d7178fabe85da2d6.jpeg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <a class="title" href="">Метка первого слайда</a>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://blog.templatetoaster.com/wp-content/uploads/2020/05/Bootstrap-5-Facebbok.png" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <a class="title" href="">Метка первого слайда</a>
-                                </div>
-                            </div>
+                            <? endforeach; ?>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
