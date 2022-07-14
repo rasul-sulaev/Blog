@@ -1,15 +1,23 @@
 <?php
-include_once "path.php";
-include_once SITE_ROOT . "/app/controllers/admin/PostsController.php";
+    include_once "path.php";
+    include_once SITE_ROOT."/app/controllers/admin/PostsController.php";
 
-// Данные
-$category_name = isset($_GET['name']) ? htmlspecialchars(trim($_GET['name'])) : NULL;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-// Категории
-$category = selectOne('categories', ["name" => $category_name]);
+    $limit = 10;
+    $offset = ($page - 1) * $limit;
 
-// Массив опубликованных постов относящиеся к данной категории
-$posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE cat.name = '$category_name' AND p.status = 'P' ORDER BY p.createdAt DESC");
+    // Данные
+    $category_name = isset($_GET['name']) ? htmlspecialchars(trim($_GET['name'])) : NULL;
+
+    // Категории
+    $category = selectOne('categories', ["name" => $category_name]);
+
+    // Массив опубликованных постов относящиеся к данной категории
+    $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE cat.name = '$category_name' AND p.status = 'P' ORDER BY p.createdAt DESC LIMIT $limit OFFSET $offset");
+
+    // Количество страниц в пагинации
+    $total_pages = round(countRow('posts', "WHERE id_category = {$category['id']} AND status = 'P'") / $limit, 0);
 ?>
 <!doctype html>
 <html lang="en">
@@ -57,18 +65,8 @@ $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE cat.na
                                                 $post['title'];
                                             ?></a>
                                             <div class="post__info">
-                                                <span>
-                                                    <i class="fa fa-user"></i>
-                                                    <?=$post['username']?>
-                                                </span>
-                                                <span>
-                                                    <i class="fa fa-calendar"></i>
-                                                    <?=$post['createdAt']?>
-                                                </span>
-                                                <span>
-                                                    <i class="fa fa-folder"></i>
-                                                    <?=$post['category_name']?>
-                                                </span>
+                                                <span><i class="fa fa-user"></i><?=$post['username']?></span>
+                                                <span><i class="fa fa-calendar"></i><?=$post['createdAt']?></span>
                                             </div>
                                             <p class="post__preview-text">
                                                 <?=
@@ -81,6 +79,31 @@ $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE cat.na
                                     </div>
                                 <? endforeach; ?>
                             </div>
+                            <? endif; ?>
+                            <? if ($total_pages > 1): ?>
+                            <nav class="mt-4" aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="?name=<?= $page > 1 ?
+                                            "{$category['name']}&page=".$page - 1 :
+                                            "{$category['name']}&page=1";
+                                        ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <? for ($i=1; $i<=$total_pages; ++$i): ?>
+                                        <li class="page-item <? if ($page == $i) echo "active";?>"><a class="page-link" href="?name=<?="{$category['name']}&page=$i"?>"><?=$i?></a></li>
+                                    <? endfor; ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?name=<?= $page < $total_pages ?
+                                            "{$category['name']}&page=".$page + 1 :
+                                            "{$category['name']}&page=$total_pages";
+                                        ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                             <? endif; ?>
                         </div>
                         <?php include_once "app/include/sidebar.php"; ?>

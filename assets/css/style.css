@@ -151,7 +151,7 @@ main {
   overflow: hidden;
 }
 #carouselExampleCaptions .carousel-item {
-  height: 500px;
+  height: 400px;
 }
 #carouselExampleCaptions .carousel-item img {
   height: 100%;
@@ -214,6 +214,7 @@ main {
 }
 .posts .post__info i {
   color: rgba(0, 0, 0, 0.6);
+  margin-right: 4px;
 }
 .posts .post__preview-text {
   font-size: 14px;
@@ -365,6 +366,7 @@ footer .footer-bottom {
 }
 .single_post__info i {
   color: rgba(0, 0, 0, 0.6);
+  margin-right: 4px;
 }
 .single_post__img {
   margin: 20px 0;
@@ -407,4 +409,17 @@ footer .footer-bottom {
 }
 .auth-reg form .desc span a:hover {
   text-decoration: none;
+}
+
+.pagination .active > .page-link {
+  color: #fff !important;
+  border-color: #008484 !important;
+  background-color: #008484 !important;
+}
+.pagination .page-link {
+  color: #008484;
+}
+.pagination .page-link.active {
+  border-color: #008484 !important;
+  background-color: #008484 !important;
 }

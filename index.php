@@ -2,11 +2,18 @@
     include_once "path.php";
     include_once SITE_ROOT . "/app/controllers/admin/PostsController.php";
 
-    // Массив опубликованных постов
-    $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P' ORDER BY p.createdAt DESC");
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $limit = 10;
+    $offset = ($page - 1) * $limit;
 
-    // Массив топ постов
+    // Массив опубликованных постов
+    $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P' ORDER BY p.createdAt DESC LIMIT $limit OFFSET $offset");
+
+    // Массив ТОП постов
     $top_posts = selectAll('posts', ['top_post' => 1]);
+
+    // Количество страниц в пагинации
+    $total_pages = round(countRow('posts', "WHERE status = 'P'") / $limit, 0);
 ?>
 <!doctype html>
 <html lang="en">
@@ -73,18 +80,9 @@
                                             $post['title'];
                                         ?></a>
                                         <div class="post__info">
-                                            <span>
-                                                <i class="fa fa-user"></i>
-                                                <?=$post['username']?>
-                                            </span>
-                                            <span>
-                                                <i class="fa fa-calendar"></i>
-                                                <?=$post['createdAt']?>
-                                            </span>
-                                            <span>
-                                                <i class="fa fa-folder"></i>
-                                                <a href="<?= BASE_URL."category.php?name={$post['category_name']}"; ?>"><?=$post['category_name']?></a>
-                                            </span>
+                                            <span><i class="fa fa-user"></i><?=$post['username']?></span>
+                                            <span><i class="fa fa-calendar"></i><?=$post['createdAt']?></span>
+                                            <span><i class="fa fa-folder"></i><a href="<?= BASE_URL."category.php?name={$post['category_name']}"; ?>"><?=$post['category_name']?></a></span>
                                         </div>
                                         <p class="post__preview-text"><?=
                                             strlen($post['content']) >= 350 ?
@@ -95,6 +93,25 @@
                                 </div>
                                 <? endforeach; ?>
                             </div>
+                            <? if ($total_pages > 1): ?>
+                            <nav class="mt-4" aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=1" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <? for ($i=1; $i<=$total_pages; ++$i): ?>
+                                        <li class="page-item <? if ($page == $i) echo "active";?>"><a class="page-link" href="?page=<?="$i"?>"><?=$i?></a></li>
+                                    <? endfor; ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<?=$total_pages; ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <? endif; ?>
                         </div>
                         <?php include_once "app/include/sidebar.php"; ?>
                     </div>

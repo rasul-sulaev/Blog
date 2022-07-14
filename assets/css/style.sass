@@ -128,7 +128,7 @@ main
 #carouselExampleCaptions
 	overflow: hidden
 	.carousel-item
-		height: 500px
+		height: 400px
 		img
 			height: 100%
 			width: 100%
@@ -180,6 +180,7 @@ main
 			grid-gap: 20px
 			& i
 				color: rgba(0,0,0, 0.6)
+				margin-right: 4px
 		&__preview-text
 			font-size: 14px
 			
@@ -206,7 +207,6 @@ main
 				padding-left: 0
 				list-style: none
 				li
-					
 					border-bottom: 1px solid #ccc
 					a
 						padding: 6px 0
@@ -296,6 +296,7 @@ footer
 		grid-gap: 20px
 		& i
 			color: rgba(0,0,0, 0.6)
+			margin-right: 4px
 	&__img
 		margin: 20px 0
 		height: 400px
@@ -333,3 +334,18 @@ footer
 					text-decoration: underline
 					&:hover
 						text-decoration: none
+						
+						
+						
+// Pagination
+.pagination
+	.active
+		& > .page-link
+			color: #fff !important
+			border-color: $green !important
+			background-color: $green !important
+	.page-link
+		color: $green
+		&.active
+			border-color: $green !important
+			background-color: $green !important

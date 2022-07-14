@@ -192,8 +192,41 @@ function searchInTitleAndContent($query, $users, $posts, $categories) {
         JOIN $categories AS cat ON p.id_category = cat.id WHERE p.status = 'P' 
         AND p.title LIKE '%$query%' OR p.content LIKE '%$query%'";
 
+
     $query = $db->prepare($sql);
     $query->execute();
     queryCheckError($query);
     return $query->fetchAll();
 }
+
+
+
+
+function countRow($table, $where) {
+    global $db;
+
+    $sql = "SELECT COUNT(*) FROM $table ";
+
+    if ($where) {
+        $sql .= $where;
+    }
+
+    $query = $db->prepare($sql);
+    $query->execute();
+    queryCheckError($query);
+    return $query->fetchColumn();
+}
+
+
+
+//
+//function limit($table, $limit, $offset) {
+//    global $db;
+//
+//    $sql = "SELECT * FROM $table LIMIT $limit OFFSET $offset";
+//
+//    $query = $db->prepare($sql);
+//    $query->execute();
+//    queryCheckError($query);
+//    return $query->fetchAll();
+//}
