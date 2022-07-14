@@ -14,7 +14,7 @@
             <h4 class="title">Категории</h4>
             <ul>
                 <? foreach ($categories as $category): ?>
-                    <li><a href="#"><?=$category['name']?></a></li>
+                    <li><a href="<?= BASE_URL."category.php?name={$category['name']}"; ?>"><?=$category['name']?></a></li>
                 <? endforeach; ?>
             </ul>
         </section>

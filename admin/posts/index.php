@@ -38,7 +38,7 @@
                                             <th scope="col">Автор</th>
                                             <th scope="col">Дата публикации</th>
                                             <th scope="col">Статус</th>
-                                            <th scope="col">ТОП</th>
+                                            <th scope="col" class="text-center">ТОП Slider</th>
                                             <th scope="col">Управление</th>
                                         </tr>
                                     </thead>
@@ -54,7 +54,7 @@
                                                     $post['title'];
                                                 ?></a>
                                             </td>
-                                            <td><?=$post['category_name']?></td>
+                                            <td><a href="<?= BASE_URL."category.php?name={$post['category_name']}"; ?>"><?=$post['category_name']?></a></td>
                                             <td><?=$post['username']?></td>
                                             <td><?=$post['createdAt']?></td>
                                             <td>
@@ -67,7 +67,7 @@
                                                     </select>
                                                 </form>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <form action="edit.php" method="GET">
                                                     <input type="hidden" name="id_for_top" value="<?=$post['id']?>">
                                                     <input class="top_post" type="checkbox" name="top_post" <? if ($post['top_post']) echo 'checked'?> onchange="this.form.submit()">

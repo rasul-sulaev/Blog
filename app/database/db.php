@@ -154,7 +154,8 @@ function selectAllFromPostWithUser($users, $posts, $categories, $where = NULL) {
     $sql = "SELECT
         u.username,
         p.*,
-        cat.name AS category_name
+        cat.name AS category_name,
+        cat.description
         FROM $posts AS p 
         JOIN $users AS u ON u.id = p.id_user
         JOIN $categories AS cat ON p.id_category = cat.id ";

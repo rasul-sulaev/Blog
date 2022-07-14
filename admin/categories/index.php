@@ -42,7 +42,7 @@
                                     <? foreach ($categories as $category): ?>
                                     <tr scope="row">
                                         <th><?=$category['id']?></th>
-                                        <td><?=$category['name']?></td>
+                                        <td><a href="<?= BASE_URL."category.php?name={$category['name']}"; ?>"><?=$category['name']?></a></td>
                                         <td><a href="edit.php?id=<?=$category['id']?>">edit</a></td>
                                         <td><a href="edit.php?delete_id=<?=$category['id']?>">delete</a></td>
                                     </tr>

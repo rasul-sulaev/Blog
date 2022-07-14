@@ -1,9 +1,9 @@
 <?php
     include_once "path.php";
-    include SITE_ROOT . "/app/controllers/admin/PostsController.php";
+    include_once SITE_ROOT . "/app/controllers/admin/PostsController.php";
 
     // Массив опубликованных постов
-    $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P'");
+    $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P' ORDER BY p.createdAt DESC");
 
     // Массив топ постов
     $top_posts = selectAll('posts', ['top_post' => 1]);
@@ -62,11 +62,8 @@
                     <div class="row">
                         <div class="main-content col-12 col-md-9">
                             <div class="posts">
-                                <h2>Последние публикации</h2>
-                                <?
-                                foreach ($posts as $post):
-                                    if ($post['status'] === 'P'):
-                                ?>
+                                <h2 class="mb-4">Последние публикации</h2>
+                                <? foreach ($posts as $post): ?>
                                 <div class="post row">
                                     <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
                                     <div class="post__text col-12 col-md-8">
@@ -86,7 +83,7 @@
                                             </span>
                                             <span>
                                                 <i class="fa fa-folder"></i>
-                                                <?=$post['category_name']?>
+                                                <a href="<?= BASE_URL."category.php?name={$post['category_name']}"; ?>"><?=$post['category_name']?></a>
                                             </span>
                                         </div>
                                         <p class="post__preview-text"><?=
@@ -96,18 +93,15 @@
                                         ?></p>
                                     </div>
                                 </div>
-                                <?
-                                    endif;
-                                endforeach;
-                                ?>
+                                <? endforeach; ?>
                             </div>
                         </div>
-                        <?php include("app/include/sidebar.php"); ?>
+                        <?php include_once "app/include/sidebar.php"; ?>
                     </div>
                 </div>
             </section>
         </main>
-        <?php include("app/include/footer.php"); ?>
+        <?php include "app/include/footer.php"; ?>
     </div>
 
     <script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>
