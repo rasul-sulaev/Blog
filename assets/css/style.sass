@@ -279,8 +279,8 @@ footer
 					border: none
 					transition: all 200ms ease-in-out !important
 					&:hover
-						background-color: #272727
-						color: #aaa
+						background-color: $green
+						color: #fff
 					
 	.footer-bottom
 		margin-top: 30px
@@ -289,6 +289,8 @@ footer
 		
 // Страница поста
 .single_post
+	padding: 20px
+	background-color: #fff
 	&__info
 		font-size: 12px
 		display: flex
@@ -302,6 +304,8 @@ footer
 		height: 400px
 		object-fit: cover
 	&__text
+		img
+			max-width: 100%
 		a
 			color: $green-hover
 			text-decoration: underline

@@ -348,13 +348,17 @@ footer section.feedback form button {
   transition: all 200ms ease-in-out !important;
 }
 footer section.feedback form button:hover {
-  background-color: #272727;
-  color: #aaa;
+  background-color: #008484;
+  color: #fff;
 }
 footer .footer-bottom {
   margin-top: 30px;
 }
 
+.single_post {
+  padding: 20px;
+  background-color: #fff;
+}
 .single_post__info {
   font-size: 12px;
   display: -webkit-box;
@@ -373,6 +377,9 @@ footer .footer-bottom {
   height: 400px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.single_post__text img {
+  max-width: 100%;
 }
 .single_post__text a {
   color: #006669;

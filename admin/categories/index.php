@@ -34,8 +34,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Название</th>
-                                    <th scope="col">Редактировать</th>
-                                    <th scope="col">Удалить</th>
+                                    <th scope="col">Управление</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -43,8 +42,10 @@
                                     <tr scope="row">
                                         <th><?=$category['id']?></th>
                                         <td><a href="<?= BASE_URL."category.php?name={$category['name']}"; ?>"><?=$category['name']?></a></td>
-                                        <td><a href="edit.php?id=<?=$category['id']?>">edit</a></td>
-                                        <td><a href="edit.php?delete_id=<?=$category['id']?>">delete</a></td>
+                                        <td>
+                                            <a href="edit.php?id=<?=$category['id']?>">edit</a> |
+                                            <a href="edit.php?delete_id=<?=$category['id']?>">delete</a>
+                                        </td>
                                     </tr>
                                     <? endforeach; ?>
                                 </tbody>

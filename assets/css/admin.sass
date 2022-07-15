@@ -53,6 +53,13 @@ form
 		box-sizing: border-box
 		
 
+.form-check-input
+	&:checked
+		background-color: $green-hover
+		border-color: #008484
+
+
+
 .wrapper
 	min-height: 100vh
 	display: flex
@@ -185,6 +192,7 @@ main
 	
 	
 .posts-table
+	th, td
+		vertical-align: middle
 	select
 		padding: 6px 10px !important
-		width: auto !important

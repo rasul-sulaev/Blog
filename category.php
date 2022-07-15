@@ -1,14 +1,14 @@
 <?php
     include_once "path.php";
-    include_once SITE_ROOT."/app/controllers/admin/PostsController.php";
+    include SITE_ROOT.'/app/database/db.php';
 
+    // Данные из GET запроса заголовка
+    $category_name = isset($_GET['name']) ? htmlspecialchars(trim($_GET['name'])) : NULL;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
     $limit = 10;
     $offset = ($page - 1) * $limit;
 
-    // Данные
-    $category_name = isset($_GET['name']) ? htmlspecialchars(trim($_GET['name'])) : NULL;
 
     // Категории
     $category = selectOne('categories', ["name" => $category_name]);
@@ -17,7 +17,7 @@
     $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE cat.name = '$category_name' AND p.status = 'P' ORDER BY p.createdAt DESC LIMIT $limit OFFSET $offset");
 
     // Количество страниц в пагинации
-    $total_pages = round(countRow('posts', "WHERE id_category = {$category['id']} AND status = 'P'") / $limit, 0);
+    $total_pages = ceil(countRow('posts', "WHERE id_category = {$category['id']} AND status = 'P'") / $limit);
 ?>
 <!doctype html>
 <html lang="en">
@@ -66,7 +66,7 @@
                                             ?></a>
                                             <div class="post__info">
                                                 <span><i class="fa fa-user"></i><?=$post['username']?></span>
-                                                <span><i class="fa fa-calendar"></i><?=$post['createdAt']?></span>
+                                                <span><i class="fa fa-calendar"></i><? $date = date_parse($post['createdAt']); echo "{$date['day']}.{$date['month']}.{$date['year']}"?></span>
                                             </div>
                                             <p class="post__preview-text">
                                                 <?=

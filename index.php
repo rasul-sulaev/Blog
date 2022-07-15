@@ -1,6 +1,10 @@
 <?php
     include_once "path.php";
-    include_once SITE_ROOT . "/app/controllers/admin/PostsController.php";
+    include SITE_ROOT.'/app/database/db.php';
+
+    // Массив ТОП постов (slider)
+    $top_posts = selectAll('posts', ['top_post' => 1]);
+
 
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $limit = 10;
@@ -9,11 +13,8 @@
     // Массив опубликованных постов
     $posts = selectAllFromPostWithUser('users', 'posts', 'categories', "WHERE p.status = 'P' ORDER BY p.createdAt DESC LIMIT $limit OFFSET $offset");
 
-    // Массив ТОП постов
-    $top_posts = selectAll('posts', ['top_post' => 1]);
-
     // Количество страниц в пагинации
-    $total_pages = round(countRow('posts', "WHERE status = 'P'") / $limit, 0);
+    $total_pages = ceil(countRow('posts', "WHERE status = 'P'") / $limit);
 ?>
 <!doctype html>
 <html lang="en">
@@ -81,7 +82,7 @@
                                         ?></a>
                                         <div class="post__info">
                                             <span><i class="fa fa-user"></i><?=$post['username']?></span>
-                                            <span><i class="fa fa-calendar"></i><?=$post['createdAt']?></span>
+                                            <span><i class="fa fa-calendar"></i><? $date = date_parse($post['createdAt']); echo "{$date['day']}.{$date['month']}.{$date['year']}"?></span>
                                             <span><i class="fa fa-folder"></i><a href="<?= BASE_URL."category.php?name={$post['category_name']}"; ?>"><?=$post['category_name']?></a></span>
                                         </div>
                                         <p class="post__preview-text"><?=

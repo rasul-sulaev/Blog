@@ -54,6 +54,11 @@ form .success {
           box-sizing: border-box;
 }
 
+.form-check-input:checked {
+  background-color: #006669;
+  border-color: #008484;
+}
+
 .wrapper {
   min-height: 100vh;
   display: -webkit-box;
@@ -206,7 +211,9 @@ main > .content {
   font-size: inherit !important;
 }
 
+.posts-table th, .posts-table td {
+  vertical-align: middle;
+}
 .posts-table select {
   padding: 6px 10px !important;
-  width: auto !important;
 }

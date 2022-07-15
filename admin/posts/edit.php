@@ -54,7 +54,6 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Категория поста</label>
-                                        <?=$category?>
                                         <select class="form-select" name="category">
                                             <option value="1" selected disabled>Выберите категорию поста</option>
                                             <? foreach ($categories as $item): ?>
