@@ -36,7 +36,7 @@
                                             <th scope="col">Название</th>
                                             <th scope="col">Категория</th>
                                             <th scope="col">Автор</th>
-                                            <th scope="col">Дата публикации</th>
+                                            <th scope="col">Дата создания</th>
                                             <th scope="col">Статус</th>
                                             <th scope="col" class="text-center">ТОП</th>
                                             <th scope="col">Управление</th>

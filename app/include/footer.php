@@ -50,7 +50,7 @@
             </section>
         </div>
         <div class="footer-bottom row">
-            <p>&copy; myblog.com | Designed by Rasul Sulaev</p>
+            <p>&copy; myblog.com | Designed by <a href="https://t.me/Rasul_Mountain" target="_blank">Rasul Sulaev</a></p>
         </div>
     </div>
 </footer>

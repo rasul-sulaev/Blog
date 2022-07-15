@@ -84,7 +84,24 @@ header .logo {
   font-size: 22px;
   font-weight: bold;
 }
-header .menu {
+header .navbar {
+  padding: 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+header .navbar-toggler {
+  padding: 0;
+  border: none;
+}
+header .navbar-toggler:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+header .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+header .navbar .navbar-nav {
   margin: 0;
   padding-left: 0;
   list-style: none;
@@ -93,15 +110,16 @@ header .menu {
   display: flex;
   grid-gap: 20px;
 }
-header .menu__item {
+header .navbar .navbar-nav .nav-item {
   position: relative;
 }
-header .menu__item:hover > .menu {
+header .navbar .navbar-nav .nav-item:hover > .navbar-nav {
   opacity: 1;
   visibility: visible;
 }
-header .menu__item a {
+header .navbar .navbar-nav .nav-item a {
   padding: 8px 0 4px;
+  color: #fff !important;
   font-size: 15px;
   display: inline-block;
   background-image: -webkit-gradient(linear, left top, right top, from(#fff), to(#fff));
@@ -112,27 +130,29 @@ header .menu__item a {
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
 }
-header .menu__item a:hover {
+header .navbar .navbar-nav .nav-item a:hover {
   background-size: 100% 2px;
 }
-header .menu__item .menu {
-  padding: 15px 10px 15px;
-  position: absolute;
-  left: -10px;
-  width: 150px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  grid-gap: 0;
-  background: #008484;
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
-  opacity: 0;
-  visibility: hidden;
+header .navbar .navbar-nav .dropdown-menu {
+  padding: 10px 10px 15px;
+  border-radius: 0;
+  border-color: transparent;
+  background-color: #008484;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
-header .menu__item .menu__item a {
+header .navbar .navbar-nav .dropdown-menu li + li {
+  margin-top: 4px;
+}
+header .navbar .navbar-nav .dropdown-menu li:hover, header .navbar .navbar-nav .dropdown-menu li:focus {
+  background-color: transparent !important;
+}
+header .navbar .navbar-nav .dropdown-item {
   font-size: 13px;
+  display: inline-block !important;
+}
+header .navbar .navbar-nav .dropdown-item:hover, header .navbar .navbar-nav .dropdown-item:focus {
+  background-color: transparent !important;
 }
 
 main {
@@ -204,7 +224,7 @@ main {
 }
 .posts .post__info {
   margin: 6px 0 20px;
-  font-size: 12px;
+  font-size: 13px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -360,7 +380,7 @@ footer .footer-bottom {
   background-color: #fff;
 }
 .single_post__info {
-  font-size: 12px;
+  font-size: 13px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -445,4 +465,70 @@ footer .footer-bottom {
 }
 .comments-blocked a:hover {
   text-decoration: none;
+}
+.comments .success {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.comments .success.none {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+.comments .all-comments h4 span {
+  font-size: 14px;
+}
+.comments .all-comments .comment {
+  margin: 0;
+  padding: 20px;
+  background-color: #fff;
+}
+.comments .all-comments .comment + .comment {
+  margin-top: 15px;
+}
+.comments .all-comments .comment__info {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6) !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  grid-gap: 20px;
+}
+.comments .all-comments .comment__info i {
+  color: rgba(0, 0, 0, 0.5) !important;
+  margin-right: 4px;
+}
+.comments .all-comments .comment__info .date {
+  margin-left: auto;
+}
+.comments .all-comments .comment__info .this-you {
+  margin-left: 8px;
+  padding: 1px 6px;
+  color: #fff;
+  font-size: 12px;
+  font-style: italic;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #5c5b5b;
+}
+.comments .all-comments .comment__info .this-admin {
+  margin-left: 8px;
+  padding: 1px 6px;
+  color: #fff;
+  font-size: 12px;
+  font-style: italic;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #008484;
+}
+.comments .all-comments .comment__text {
+  font-size: 14px;
+}
+.comments .all-comments .comment__text p + p {
+  margin-bottom: 20px;
 }

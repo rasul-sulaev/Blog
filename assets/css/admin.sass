@@ -75,43 +75,59 @@ header
 	.logo
 		font-size: 22px
 		font-weight: bold
-	
-	.menu
-		margin: 0
-		padding-left: 0
-		list-style: none
-		display: flex
-		grid-gap: 20px
-		&__item
-			position: relative
-			&:hover > .menu
-				opacity: 1
-				visibility: visible
-			a
-				padding: 8px 0 4px
-				font-size: 15px
-				display: inline-block
-				background-image: linear-gradient(to right, #fff, #fff)
-				background-repeat: no-repeat
-				background-size: 0 2px
-				background-position: left bottom
-				transition: all 200ms ease-in-out
-				&:hover
-					background-size: 100% 2px
-			.menu
-				padding: 15px 10px 15px
-				position: absolute
-				left: -10px
-				width: 150px
-				flex-direction: column
-				grid-gap: 0
-				background: $green
-				transition: all 200ms ease-in-out
-				opacity: 0
-				visibility: hidden
-				&__item
-					a
-						font-size: 13px
+	.navbar
+		padding: 0
+		justify-content: space-between
+		&-toggler
+			padding: 0
+			border: none
+			&:focus
+				box-shadow: none
+			&-icon
+				background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>")
+		.navbar-nav
+			margin: 0
+			padding-left: 0
+			list-style: none
+			display: flex
+			grid-gap: 20px
+			.nav-item
+				position: relative
+				&:hover > .navbar-nav
+					opacity: 1
+					visibility: visible
+				a
+					padding: 8px 0 4px
+					color: #fff !important
+					font-size: 15px
+					display: inline-block
+					background-image: linear-gradient(to right, #fff, #fff)
+					background-repeat: no-repeat
+					background-size: 0 2px
+					background-position: left bottom
+					transition: all 200ms ease-in-out
+					&:hover
+						background-size: 100% 2px
+			.dropdown
+				&-menu
+					padding: 10px 10px 15px
+					border-radius: 0
+					border-color: transparent
+					background-color: $green
+					box-shadow: none
+					&[data-bs-popper]
+					li + li
+						margin-top: 4px
+					li
+						&:hover,
+						&:focus
+							background-color: transparent !important
+				&-item
+					font-size: 13px
+					display: inline-block !important
+					&:hover,
+					&:focus
+						background-color: transparent !important
 						
 
 
@@ -191,7 +207,7 @@ main
 	
 	
 	
-.posts-table
+.table
 	th, td
 		vertical-align: middle
 	select

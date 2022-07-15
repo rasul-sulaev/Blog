@@ -51,5 +51,6 @@
     </div>
 
     <script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

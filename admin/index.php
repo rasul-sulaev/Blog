@@ -1,5 +1,11 @@
 <?php
     include_once "../path.php";
+    session_start();
+
+    // Если пользователь не Админ, то редиректим его на Главную страницу
+    if ($_SESSION['role'] !== 'admin') {
+        header('location: /');
+    }
 ?>
 
 <!doctype html>
@@ -32,5 +38,6 @@
     </div>
 
     <script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

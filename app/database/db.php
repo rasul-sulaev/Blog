@@ -219,14 +219,40 @@ function countRow($table, $where) {
 
 
 
-//
-//function limit($table, $limit, $offset) {
-//    global $db;
-//
-//    $sql = "SELECT * FROM $table LIMIT $limit OFFSET $offset";
-//
-//    $query = $db->prepare($sql);
-//    $query->execute();
-//    queryCheckError($query);
-//    return $query->fetchAll();
-//}
+function selectAllFromCommentsWithUser($comments, $users, $params = [], $other = null) {
+    global $db;
+
+    $sql = "SELECT
+        u.id AS id_user,
+        u.username,
+        u.email,
+        u.role AS user_role,
+        com.*
+        FROM $comments AS com 
+        JOIN $users AS u ON u.id = com.id_user";
+
+    if (!empty($params)) {
+        $i = 0;
+        foreach ($params as $key => $value) {
+            if (!is_numeric($value)) {
+                $value = "'$value'";
+            }
+
+            if ($i === 0) {
+                $sql .= " WHERE $key = $value";
+            } else {
+                $sql .= " AND $key = $value";
+            }
+            $i++;
+        }
+    }
+
+    if ($other) {
+        $sql .= $other;
+    }
+
+    $query = $db->prepare($sql);
+    $query->execute();
+    queryCheckError($query);
+    return $query->fetchAll();
+}

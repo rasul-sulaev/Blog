@@ -6,6 +6,7 @@
                 <li><a href="<?= BASE_URL.'admin/posts/'; ?>">Посты</a></li>
                 <li><a href="<?= BASE_URL.'admin/categories/'; ?>">Категории</a></li>
                 <li><a href="<?= BASE_URL.'admin/users/'; ?>">Пользователи</a></li>
+                <li><a href="<?= BASE_URL.'admin/comments/'; ?>">Комментарии</a></li>
             </ul>
         </section>
     </div>

@@ -4,37 +4,44 @@
 ?>
 <header class="container-fluid">
     <div class="container">
-        <div class="row">
+        <nav class="navbar col-8 d-flex justify-content-between navbar-expand-lg w-100">
             <div class="col-4 d-flex align-items-center">
                 <a class="logo" href="/">Мой блог</a>
             </div>
-            <nav class="col-8 d-flex justify-content-end">
-                <ul class="menu">
-                    <li class="menu__item"><a href="/">Главная</a></li>
-                    <li class="menu__item"><a href="#">О нас</a></li>
-                    <li class="menu__item"><a href="#">Услуги</a></li>
-                    <li class="menu__item"><a href="#">Контакты</a></li>
-                    <li class="menu__item">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Услуги</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Контакты</a></li>
+                    <li class="nav-item dropdown">
                         <?php if (isset($_SESSION['id'])): ?>
-                        <a href="#">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user fa-sm"></i>
                             <?= $_SESSION['login']; ?>
                         </a>
-                        <ul class="menu sub-menu">
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <?php if ($_SESSION['role'] === 'admin'): ?>
-                            <li class="menu__item"><a href="<?= BASE_URL.'admin/'; ?>">Админ панель</a></li>
+                            <li><a class="dropdown-item" href="<?= BASE_URL.'admin/'; ?>">Админ панель</a></li>
                             <? endif; ?>
-                            <li class="menu__item"><a href="<?= BASE_URL.'logout.php'; ?>">Выход</a></li>
+                            <li><a class="dropdown-item" href="<?= BASE_URL.'logout.php'; ?>">Выход</a></li>
                         </ul>
                         <? else: ?>
-                        <a href="<?= BASE_URL.'login.php'; ?>"><i class="fa fa-user fa-sm"></i> Вход</a>
-                        <ul class="menu sub-menu">
-                            <li class="menu__item"><a href="<?= BASE_URL.'reg.php'; ?>">Регистрация</a></li>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user fa-sm"></i>
+                            Авторизация
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="<?= BASE_URL.'login.php'; ?>">Вход</a></li>
+                            <li><a class="dropdown-item" href="<?= BASE_URL.'logout.php'; ?>">Регистрация</a></li>
                         </ul>
                         <? endif; ?>
                     </li>
                 </ul>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </div>
 </header>
