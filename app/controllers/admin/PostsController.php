@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
 
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
 $status_message = [

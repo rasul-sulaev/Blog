@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
 
 // Данные
 $id = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : NULL;

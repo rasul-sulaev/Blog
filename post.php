@@ -38,6 +38,8 @@
                                 <img class="single_post__img col-12" src="<?=BASE_URL."uploads/img/posts/".$post['img'];?>" alt="">
                                 <div class="single_post__text"><?=$post['content']?></div>
                             </div>
+
+                            <?php include("app/include/comments.php"); ?>
                             <? endif; ?>
                         </div>
                         <?php include("app/include/sidebar.php"); ?>

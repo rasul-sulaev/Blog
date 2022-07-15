@@ -1,5 +1,5 @@
 <?php
-require "app/database/db.php";
+require_once "app/database/db.php";
 
 /** Записываем данные пользователя в SESSION **/
 function writeToSessionUser($user) {

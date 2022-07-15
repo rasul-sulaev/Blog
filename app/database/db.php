@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "config_db.php";
+require_once "config_db.php";
 
 
 function tt($value) {

@@ -430,3 +430,19 @@ footer .footer-bottom {
   border-color: #008484 !important;
   background-color: #008484 !important;
 }
+
+.comments-blocked {
+  padding: 20px;
+  border-left-color: #D00A00;
+  background-color: #fff;
+}
+.comments-blocked p {
+  margin: 0;
+}
+.comments-blocked a {
+  color: #008484;
+  text-decoration: underline;
+}
+.comments-blocked a:hover {
+  text-decoration: none;
+}
