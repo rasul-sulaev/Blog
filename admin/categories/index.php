@@ -15,49 +15,50 @@
     <link rel="stylesheet" href="../../assets/css/admin.css">
 </head>
 <body>
-<div class="wrapper">
-    <?php include("../../app/include/header-admin.php"); ?>
-    <main>
-        <section class="content">
-            <div class="container h-100">
-                <div class="row h-100">
-                    <? include "../include/sidebar.php"; ?>
-                    <div class="main-content col-12 col-md-9">
-                        <div class="posts">
-                            <h2 class="posts-title">Управление категориями</h2>
-                            <div class="d-flex gap-2 my-3">
-                                <a class="btn btn-success w-auto" href="<?= BASE_URL.'admin/categories/create.php'; ?>">Добавить</a> <br>
-                                <a class="btn btn-warning w-auto" href="<?= BASE_URL.'admin/categories/'; ?>">Редактировать</a>
-                            </div>
-                            <table class="table table-light table-bordered table-striped table-hover">
-                                <thead class="table-light">
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Название</th>
-                                    <th scope="col">Управление</th>
-                                </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <? foreach ($categories as $category): ?>
-                                    <tr scope="row">
-                                        <th><?=$category['id']?></th>
-                                        <td><a href="<?= BASE_URL."category.php?name={$category['name']}"; ?>"><?=$category['name']?></a></td>
-                                        <td>
-                                            <a href="edit.php?id=<?=$category['id']?>">edit</a> |
-                                            <a href="edit.php?delete_id=<?=$category['id']?>">delete</a>
-                                        </td>
+    <div class="wrapper">
+        <?php include("../../app/include/header-admin.php"); ?>
+        <main>
+            <section class="content">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <? include "../include/sidebar.php"; ?>
+                        <div class="main-content col-12 col-md-9">
+                            <div class="posts">
+                                <h2 class="posts-title">Управление категориями</h2>
+                                <div class="d-flex gap-2 my-3">
+                                    <a class="btn btn-success w-auto" href="<?= BASE_URL.'admin/categories/create.php'; ?>">Добавить</a> <br>
+                                    <a class="btn btn-warning w-auto" href="<?= BASE_URL.'admin/categories/'; ?>">Редактировать</a>
+                                </div>
+                                <table class="table table-light table-bordered table-striped table-hover">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Название</th>
+                                        <th scope="col">Управление</th>
                                     </tr>
-                                    <? endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <? foreach ($categories as $category): ?>
+                                        <tr scope="row">
+                                            <th><?=$category['id']?></th>
+                                            <td><a href="<?= BASE_URL."category.php?name={$category['name']}"; ?>"><?=$category['name']?></a></td>
+                                            <td>
+                                                <a href="edit.php?id=<?=$category['id']?>">edit</a> |
+                                                <a href="edit.php?delete_id=<?=$category['id']?>">delete</a>
+                                            </td>
+                                        </tr>
+                                        <? endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
-</div>
+            </section>
+        </main>
+    </div>
 
-<script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8f44be9bba.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

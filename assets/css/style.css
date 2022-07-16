@@ -108,7 +108,7 @@ header .navbar .navbar-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 20px;
+  grid-gap: 0 20px;
 }
 header .navbar .navbar-nav .nav-item {
   position: relative;

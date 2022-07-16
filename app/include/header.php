@@ -19,7 +19,7 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Контакты</a></li>
                     <li class="nav-item dropdown">
                         <?php if (isset($_SESSION['id'])): ?>
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user fa-sm"></i>
                             <?= $_SESSION['login']; ?>
                         </a>
