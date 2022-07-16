@@ -36,7 +36,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="<?= BASE_URL.'login.php'; ?>">Вход</a></li>
-                            <li><a class="dropdown-item" href="<?= BASE_URL.'logout.php'; ?>">Регистрация</a></li>
+                            <li><a class="dropdown-item" href="<?= BASE_URL.'reg.php'; ?>">Регистрация</a></li>
                         </ul>
                         <? endif; ?>
                     </li>
