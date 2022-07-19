@@ -3,12 +3,6 @@ session_start();
 require_once "config_db.php";
 
 
-function tt($value) {
-    echo "<pre>";
-    print_r($value);
-    echo "</pre>";
-}
-
 /** Функция для обработки ошибки при работе с бд **/
 function queryCheckError($query) {
     $errInfo = $query->errorInfo();

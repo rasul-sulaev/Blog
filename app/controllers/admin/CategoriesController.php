@@ -1,6 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
-
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
 $status_message = [
     'more'        => '',
@@ -10,8 +8,8 @@ $status_message = [
 ];
 
 // Данные из полей с формы (если не были отправлены POST запросом, то будет пустая строка)
-$id = !empty($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
-$name = !empty($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+$id          = isset($segments[3]) ? htmlspecialchars(trim($segments[3])) : '';
+$name        = !empty($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
 $description = !empty($_POST['description']) ? htmlspecialchars($_POST['description']) : '';
 
 
@@ -45,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-category'])) {
 
 
 /** Получение данных категории для вставки в форму на странице Редактировние категории **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($segments[2]) && $segments[2] === 'edit' && isset($segments[3])) {
     $category = selectOne('categories', ["id" => $id]);
 
     $name = $category['name'];
@@ -75,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-category'])) {
 
 
 /** Обработчик формы Удаления категории **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
-    $id = !empty($_GET['delete_id']) ? htmlspecialchars($_GET['delete_id']) : '';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_delete'])) {
+    $id = !empty($_GET['id_delete']) ? htmlspecialchars($_GET['id_delete']) : '';
 
     if (!empty($id)) {
         $category = selectOne('categories', ["id" => $id]);

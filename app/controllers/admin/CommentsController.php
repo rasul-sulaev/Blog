@@ -1,6 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
-
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
 $status_message = [
     'more'     => '',
@@ -12,14 +10,16 @@ $status_message = [
 
 
 // Данные из полей с формы (если не были отправлены POST запросом, то будет пустая строка)
-$id      = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
+//$id      = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
+$id      = isset($segments[3]) ? htmlspecialchars(trim($segments[3])) : '';
 $comment = isset($_POST['comment']) ? htmlspecialchars(trim($_POST['comment'])) : '';
 $status  = isset($_POST['status']) ? htmlspecialchars(trim($_POST['status'])) : '';
 
 
 // Для страницы post.php
-if ($_SERVER['SCRIPT_NAME'] === '/post.php') {
-    $id_post  = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
+//tt($segments);
+if ($segments[0] === 'post') {
+    $id_post  = isset($segments[1]) ? htmlspecialchars(trim($segments[1])) : '';
 
     // Все кооментарии с данными автора относящиеся к указанной статье,  со статусом 1
     $comments = selectAllFromCommentsWithUser('comments', 'users', ["id_post" => $id_post, "status" => 1], ' ORDER BY com.createdAt DESC');
@@ -29,11 +29,11 @@ if ($_SERVER['SCRIPT_NAME'] === '/post.php') {
 $commentsAll = selectAllFromCommentsWithUser('comments', 'users', null, ' ORDER BY com.createdAt DESC');
 
 
-/** Добавление Комментария **/
+/** Добавление Комментария со страницы Поста **/
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send-comment'])) {
     // Прверка полей формы на ошибки
-    if  (mb_strlen($comment, 'UTF8') < 30 && $_SESSION['role'] === 'user') {
-        $status_message['comment'] = "Комментарий должен содержать не менее 30 символов!";
+    if  (mb_strlen($comment, 'UTF8') < 10 && $_SESSION['role'] === 'user') {
+        $status_message['comment'] = "Комментарий должен содержать не менее 10 символов!";
     } else {
         $comment = [
             "id_user" => $_SESSION['id'],
@@ -52,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send-comment'])) {
 
 
 /** Получение данных Комментария для вставки в форму на странице Редактировние комментария **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && $_SERVER['SCRIPT_NAME'] === '/admin/comments/edit.php') {
-    $commentOne = selectOne('comments', ["id" => $_GET['id']]);
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($segments[2]) && $segments[2] === 'edit' && isset($segments[3])) {
+    $commentOne = selectOne('comments', ["id" => $id]);
 
     $status     = $commentOne['status'];
     $comment    = $commentOne['comment'];
@@ -63,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && $_SERVER['SCRI
 /** Обработчик формы Редактрования комментария **/
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-comment'])) {
     // Прверка полей формы на ошибки
-    if  (mb_strlen($comment, 'UTF8') < 30) {
-        $status_message['comment'] = "Комментарий должен содержать не менее 30 символов!";
+    if  (mb_strlen($comment, 'UTF8') < 10) {
+        $status_message['comment'] = "Комментарий должен содержать не менее 10 символов!";
     }
 
     else {
         $formData = [
-            "status" => $_SESSION['role'] === 'admin' ? 1 : NULL,
+            "status" => !empty($status) ? 1 : NULL,
             "comment" => $comment
         ];
 
@@ -79,13 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-comment'])) {
 }
 
 
-/** Обработчик формы Удаления пользователя **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
-    $id = !empty($_GET['delete_id']) ? htmlspecialchars(trim($_GET['delete_id'])) : '';
+/** Обработчик формы Удаления комментария **/
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_delete'])) {
+    $id = !empty($_GET['id_delete']) ? htmlspecialchars(trim($_GET['id_delete'])) : '';
 
     if (!empty($id)) {
-        $user = selectOne('comments', ["id" => $id]);
-
         // Удаление записи из БД
         delete('comments', (int)$id);
 
@@ -94,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
 }
 
 
-/** Обработка формы Редактирования статуса комментария со страницы Комментарии **/
+/** Обработка формы Редактирования статуса Публикации комментария со страницы Комментарии **/
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_comment_for_change_status'])) {
     $id = isset($_GET['id_comment_for_change_status']) ? htmlspecialchars(trim($_GET['id_comment_for_change_status'])) : '';
     $status = !empty($_GET['status']) ? htmlspecialchars($_GET['status']) : '';

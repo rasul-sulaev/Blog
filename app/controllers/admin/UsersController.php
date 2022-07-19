@@ -1,6 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
-
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
 $status_message = [
     'more'      => '',
@@ -14,7 +12,8 @@ $status_message = [
 
 
 // Данные из полей с формы (если не были отправлены POST запросом, то будет пустая строка)
-$id    = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
+$id         = isset($segments[3]) ? htmlspecialchars(trim($segments[3])) : '';
+//$id    = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
 $login = !empty($_POST['login']) ? htmlspecialchars(trim($_POST['login'])) : '';
 $email = !empty($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
 $role  = isset($_POST['role'])  ? htmlspecialchars($_POST['role'])  : '';
@@ -69,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-user'])) {
 
 
 /** Получение данных поста для вставки в форму на странице Редактировние поста **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($segments[2]) && $segments[2] === 'edit' && isset($segments[3])) {
     $user = selectOne('users', ["id" => $id]);
 
     $login    = $user['username'];
@@ -127,8 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-user'])) {
 
 
 /** Обработчик формы Удаления пользователя **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
-    $id = !empty($_GET['delete_id']) ? htmlspecialchars(trim($_GET['delete_id'])) : '';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_delete'])) {
+    $id = !empty($_GET['id_delete']) ? htmlspecialchars(trim($_GET['id_delete'])) : '';
 
     if (!empty($id)) {
         $user = selectOne('users', ["id" => $id]);

@@ -1,6 +1,4 @@
 <?php
-require_once "app/database/db.php";
-
 /** Записываем данные пользователя в SESSION **/
 function writeToSessionUser($user) {
     $_SESSION['id']    = $user['id'];
@@ -66,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
 /** Обработчик формы Авторизации **/
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-login'])) {
     // Данные из полей с формы
-    $password  = $_POST['password'];
+    $password = $_POST['password'];
 
     // Проверка количеств попыток входа, с неправильным паролем
     if (isset($_SESSION[$email]) && $_SESSION[$email]['count'] >= 3) {

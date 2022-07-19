@@ -1,6 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/app/database/db.php";
-
 // Массив сообщений о возникших ошибок в форме Регистрации/Авторизации, и оообщение об Успехе
 $status_message = [
     'more'     => '',
@@ -13,7 +11,7 @@ $status_message = [
 
 
 // Данные из полей с формы (если не были отправлены POST запросом, то будет пустая строка)
-$id         = isset($_GET['id']) ? htmlspecialchars(trim($_GET['id'])) : '';
+$id         = isset($segments[3]) ? htmlspecialchars(trim($segments[3])) : '';
 $title      = !empty($_POST['title']) ? htmlspecialchars(trim($_POST['title'])) : '';
 $content    = !empty($_POST['content']) ? trim($_POST['content']) : '';
 $upload_img = isset($_FILES['img']) ? $_FILES['img'] : '';
@@ -87,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-post'])) {
 
 
 /** Получение данных поста для вставки в форму на странице Редактировние поста **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($segments[2]) && $segments[2] === 'edit' && isset($segments[3])) {
     $post = selectOne('posts', ["id" => $id]);
 
     $title    = $post['title'];
@@ -159,9 +157,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-post'])) {
 
 
 /** Обработчик формы Удаления поста **/
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
-    $id = !empty($_GET['delete_id']) ? htmlspecialchars(trim($_GET['delete_id'])) : '';
-
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_delete'])) {
+    $id = isset($_GET['id_delete']) ? htmlspecialchars(trim($_GET['id_delete'])) : '';
     if (!empty($id)) {
         $post = selectOne('posts', ["id" => $id]);
 
@@ -175,7 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
         header('location: /admin/posts/');
     }
 }
-
 
 
 /** Обработка формы Редактирования статуса поста со страницы Посты **/
