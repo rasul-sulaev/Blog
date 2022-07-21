@@ -3,10 +3,9 @@ AddDefaultCharset UTF-8
 
 # Включаем перенаправление
 RewriteEngine On
-# Не применять к существующим файлам файлам
 RewriteCond %{REQUEST_FILENAME} !-f
-# Не применять к существующим директориям
 RewriteCond %{REQUEST_FILENAME} !-d
-# Редирект всех запросов на main.php
-# L означает Last, нужен чтобы на этом этапе mod_rewrite сразу остановил работу.
-RewriteRule .* index.php [L]
+
+RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
