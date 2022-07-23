@@ -19,7 +19,10 @@ h5,
 h6
 	color: $gray
 
-input:not([type="checkbox"]), textarea, button, select
+input:not([type="checkbox"], [type="radio"]),
+textarea,
+button,
+select
 	padding: 10px 15px !important
 	width: 100% !important
 	font-size: 14px !important
@@ -212,3 +215,5 @@ main
 		vertical-align: middle
 	select
 		padding: 6px 10px !important
+	form
+		margin: 0

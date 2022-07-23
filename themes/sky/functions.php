@@ -21,8 +21,3 @@ function get_sidebar() {
 function get_template_directory_uri() {
     return '/themes/'.THEME_NAME;
 }
-
-// Функция для покключения постов (вывод с помощью foreach)
-function get_posts_for_content($posts) {
-    include __DIR__ . '/components/post.php';
-}

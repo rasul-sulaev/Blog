@@ -249,3 +249,25 @@ function selectAllFromCommentsWithUser($comments, $users, $params = [], $other =
     queryCheckError($query);
     return $query->fetchAll();
 }
+
+
+
+
+
+function updateTheme($table, $id = null, $params = null) {
+    global $db;
+
+    $sql = "UPDATE $table SET";
+
+    foreach ($params as $key => $value) {
+        $sql .= " $key = :$key";
+    }
+
+    if ($id !== null) {
+        $sql .= " WHERE id = $id";
+    }
+
+    $query = $db->prepare($sql);
+    $query->execute($params);
+    queryCheckError($query);
+}

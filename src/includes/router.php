@@ -6,17 +6,12 @@ $file = "../themes/$theme_name/views/$segments[0].php";
 
 // Если Админ (ссылка)
 if ($segments[0] === 'admin' && $_SESSION['role'] === 'admin') {
-    if (count($segments) === 1 &&$segments[0] === 'admin') {
-        require "app/layout/admin/index.php";
-    } elseif (count($segments) === 2 && file_exists("app/layout/admin/$segments[1]/index.php")) {
-        require "app/layout/admin/$segments[1]/index.php";
-    } elseif (count($segments) >= 3 && file_exists($file_to_dir_in_admin = "app/layout/admin/$segments[1]/$segments[2].php")) {
-        require $file_to_dir_in_admin;
+    if (count($segments) === 2 && file_exists(ROOT_PATH."/admin/$segments[1].php")) {
+        require ROOT_PATH."/admin/$segments[1].php";
     } else {
-        require "app/layout/404.php";
+        require ROOT_PATH."/admin/index.php";
     }
 }
-
 
 
 // Для остальных слуяаях
@@ -30,9 +25,9 @@ elseif ($uri === '/') {
 
     if ($post) {
         $post = $post[0];
-        require "../themes/$theme_name/views/post.php";
+        require ROOT_PATH."/themes/$theme_name/views/post.php";
     } else {
-        require "../themes/$theme_name/views/404.php";
+        require ROOT_PATH."/themes/$theme_name/views/404.php";
     }
 } elseif (file_exists($file) && $segments[0] === 'category') {
     $category_name = isset($segments[1]) ? $segments[1] : NULL;
@@ -41,12 +36,12 @@ elseif ($uri === '/') {
     $category = selectOne('categories', ["name" => $category_name]);
 
     if ($category) {
-        require "../themes/$theme_name/views/category.php";
+        require ROOT_PATH."/themes/$theme_name/views/category.php";
     } else {
-        require "../themes/$theme_name/views/404.php";
+        require ROOT_PATH."/themes/$theme_name/views/404.php";
     }
 } elseif (file_exists($file)) {
     require $file;
 } else {
-    require "../themes/$theme_name/views/404.php";
+    require ROOT_PATH."/themes/$theme_name/views/404.php";
 }

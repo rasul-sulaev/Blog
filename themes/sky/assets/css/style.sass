@@ -1,0 +1,449 @@
+$gray: #5c5b5b
+$bg: #f6f6f6
+$blue: #3B95FB
+$blue-hover: #2D72C1
+$red: #D00A00
+
+
+body
+	font-size: 14px
+	background: $bg
+
+*
+	font-family: 'Finlandica', cursive
+	
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+	color: $gray
+	
+input, textarea
+	padding: 10px 15px !important
+	width: 100% !important
+	font-size: 14px !important
+	border-radius: 0 !important
+	&:focus
+		border-color: $blue !important
+		box-shadow: none !important
+	
+blockquote
+	margin: 12px 0
+	padding: 0 12px
+	display: block
+	border-left: 4px solid $blue-hover
+	background: transparent
+
+	
+a
+	color: inherit
+	text-decoration: none
+	transition: all 100ms ease-in-out
+	&:hover
+		color: inherit
+	
+		
+form
+	.error
+		margin-bottom: 0
+		color: red
+		font-style: italic
+	.success
+		padding: 15px 10px
+		color: #222
+		font-size: 16px
+		text-align: center
+		background-color: rgba($blue, 0.3)
+		box-sizing: border-box
+		
+		
+.wrapper
+	min-height: 100vh
+	display: flex
+	flex-direction: column
+	
+
+// HEADER
+header
+	padding: 15px 0
+	background: $blue
+	& *
+		color: #fff
+	.logo
+		font-size: 22px
+		font-weight: bold
+	.navbar
+		padding: 0
+		justify-content: space-between
+		&-toggler
+			padding: 0
+			border: none
+			&:focus
+				box-shadow: none
+			&-icon
+				background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>")
+		.navbar-nav
+			margin: 0
+			padding-left: 0
+			list-style: none
+			display: flex
+			grid-gap: 0 20px
+			.nav-item
+				position: relative
+				&:hover > .navbar-nav
+					opacity: 1
+					visibility: visible
+				a
+					padding: 8px 0 4px
+					color: #fff !important
+					font-size: 15px
+					display: inline-block
+					background-image: linear-gradient(to right, #fff, #fff)
+					background-repeat: no-repeat
+					background-size: 0 2px
+					background-position: left bottom
+					transition: all 200ms ease-in-out
+					&:hover
+						background-size: 100% 2px
+			.dropdown
+				&-menu
+					padding: 10px 10px 15px
+					border-radius: 0
+					border-color: transparent
+					background-color: $blue
+					box-shadow: none
+					&[data-bs-popper]
+					li + li
+						margin-top: 4px
+					li
+						&:hover,
+						&:focus
+							background-color: transparent !important
+				&-item
+					font-size: 13px
+					display: inline-block !important
+					&:hover,
+					&:focus
+						background-color: transparent !important
+						
+						
+						
+// MAIN
+main
+	padding-bottom: 60px
+	flex-grow: 1
+						
+						
+// Слвйдер
+.slider
+	&-title
+		margin: 35px 0 30px
+		text-align: center
+#carouselExampleCaptions
+	overflow: hidden
+	.carousel-item
+		height: 400px
+		img
+			height: 100%
+			width: 100%
+			object-fit: cover
+		.carousel-caption
+			z-index: 1
+			left: 0
+			right: 0
+			bottom: 0
+			background-color: rgba(0,0,0, 0.6)
+			.title
+				color: #fff
+				font-size: 20px
+				border-bottom: 2px solid transparent
+				&:hover
+					border-color: #fff
+
+					
+					
+// Контент
+.content
+	margin-top: 50px
+	position: relative
+	
+					
+// Посты
+.posts
+	.post
+		margin: 0
+		padding: 20px
+		background-color: #fff
+		& + .post
+			margin-top: 20px
+		&__img
+			padding: 0
+			max-height: 174px
+			object-fit: cover
+		&__title
+			font-size: 24px
+			line-height: 1.4
+			display: inline-block
+			&:hover
+				color: $blue
+		&__info
+			margin: 6px 0 20px
+			font-size: 13px
+			display: flex
+			flex-wrap: wrap
+			grid-gap: 5px 20px
+			& i
+				color: rgba(0,0,0, 0.6)
+				margin-right: 4px
+		&__preview-text
+			font-size: 14px
+			
+			
+// SIDEBAR
+.sidebar
+	.content
+		padding-top: 10px
+		position: sticky
+		top: 20px
+		display: flex
+		flex-direction: column
+		grid-gap: 20px
+	section
+		padding: 20px
+		background-color: #fff
+		.title
+			margin-bottom: 15px
+			padding-bottom: 10px
+			border-bottom: 1px solid $blue
+		&.categories
+			ul
+				margin: 0
+				padding-left: 0
+				list-style: none
+				li
+					border-bottom: 1px solid #ccc
+					a
+						padding: 6px 0
+						width: 100%
+						display: inline-block
+						&:hover
+							padding-left: 6px
+							color: $blue
+					
+		
+// FOOTER
+footer
+	padding: 40px 0 10px
+	color: #aaa
+	font-size: 14px
+	background-color: #303036
+	section
+		.title
+			color: #d3d3d3
+			margin-bottom: 20px
+		&.about
+			.contacts
+				margin: 10px 0 20px
+				display: flex
+				flex-direction: column
+				grid-gap: 4px
+			.soc-links
+				a
+					height: 30px
+					width: 30px
+					display: inline-flex
+					align-items: center
+					justify-content: center
+					border: 1px solid #888
+					&:hover
+						border-color: #fff
+		&.links
+			ul
+				margin: 0
+				padding-left: 20px
+				li
+					a
+						padding: 4px 0
+						display: inline-block
+						&:hover
+							padding-left: 6px
+							color: $blue
+		&.feedback
+			form
+				display: flex
+				flex-direction: column
+				grid-gap: 10px
+				input
+					border: 1px solid transparent
+					background-color: #272727
+					transition: all 100ms ease-in-out
+					outline: none
+					&:focus
+						background-color: #1a1a1a
+				textarea
+					height: 100px
+					border: 1px solid transparent
+					background-color: #272727
+					transition: all 100ms ease-in-out
+					outline: none
+					&:focus
+						background-color: #1a1a1a
+				button
+					padding: 10px
+					border: none
+					transition: all 200ms ease-in-out !important
+					&:hover
+						background-color: $blue
+						color: #fff
+					
+	.footer-bottom
+		margin-top: 30px
+		
+		
+		
+// Страница поста
+.single_post
+	padding: 20px
+	background-color: #fff
+	&__info
+		font-size: 13px
+		display: flex
+		flex-wrap: wrap
+		grid-gap: 5px 20px
+		& i
+			color: rgba(0,0,0, 0.6)
+			margin-right: 4px
+	&__img
+		margin: 20px 0
+		height: 400px
+		object-fit: cover
+	&__text
+		img
+			max-width: 100%
+		a
+			color: $blue-hover
+			text-decoration: underline
+			&:hover
+				text-decoration: none
+	
+		
+		
+		
+// Auth & Registration
+.auth-reg
+	.title
+		margin: 35px 0 30px
+		text-align: center
+	form
+		button
+			padding: 10px
+			border-radius: 0
+		.desc
+			text-align: center
+			margin-top: 12px
+			a
+				color: $blue
+				text-decoration: underline
+				&:hover
+					text-decoration: none
+			span
+				font-size: 14px
+				a
+					text-decoration: underline
+					&:hover
+						text-decoration: none
+						
+						
+						
+// Pagination
+.pagination
+	.active
+		& > .page-link
+			color: #fff !important
+			border-color: $blue !important
+			background-color: $blue !important
+	.page-link
+		color: $blue
+		&.active
+			border-color: $blue !important
+			background-color: $blue !important
+			
+			
+// Комментарии
+.comments
+	&-blocked
+		padding: 20px
+		border-left-color: $red
+		background-color: #fff
+		p
+			margin: 0
+		a
+			color: $blue
+			text-decoration: underline
+			&:hover
+				text-decoration: none
+	.success
+		visibility: visible
+		opacity: 1
+		transition: all 300ms ease-in-out
+		&.none
+			position: absolute
+			visibility: hidden
+			opacity: 0
+	.all-comments
+		h4
+			span
+				font-size: 14px
+		.comment
+			margin: 0
+			padding: 20px
+			background-color: #fff
+			& + .comment
+				margin-top: 15px
+			&__info
+				margin-bottom: 12px
+				font-size: 13px
+				color: rgba(0,0,0, 0.6) !important
+				display: flex
+				flex-wrap: wrap
+				grid-gap: 5px 20px
+				& i
+					color: rgba(0,0,0, 0.5) !important
+					margin-right: 4px
+				.date
+					margin-left: auto
+				.this-you
+					margin-left: 8px
+					padding: 1px 6px
+					color: #fff
+					font-size: 12px
+					font-style: italic
+					display: inline-block
+					border-radius: 4px
+					background-color: $gray
+				.this-admin
+					margin-left: 8px
+					padding: 1px 6px
+					color: #fff
+					font-size: 12px
+					font-style: italic
+					display: inline-block
+					border-radius: 4px
+					background-color: $blue
+			&__text
+				font-size: 14px
+				p + p
+					margin-bottom: 20px
+					
+					
+// 404
+.page404
+	padding-top: 40px
+	h1
+		margin: 40px 0
+		color: $red
+		font-size: 62px !important
+	

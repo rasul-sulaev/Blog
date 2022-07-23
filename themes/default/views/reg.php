@@ -1,5 +1,5 @@
 <?php
-    include "../src/controllers/UserController.php";
+    include ROOT_PATH."/src/controllers/UserController.php";
 ?>
 <!doctype html>
 <html lang="en">

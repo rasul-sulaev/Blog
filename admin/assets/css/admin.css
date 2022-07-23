@@ -17,13 +17,19 @@ h6 {
   color: #5c5b5b;
 }
 
-input:not([type=checkbox]), textarea, button, select {
+input:not([type=checkbox], [type=radio]),
+textarea,
+button,
+select {
   padding: 10px 15px !important;
   width: 100% !important;
   font-size: 14px !important;
   border-radius: 0 !important;
 }
-input:not([type=checkbox]):focus, textarea:focus, button:focus, select:focus {
+input:not([type=checkbox], [type=radio]):focus,
+textarea:focus,
+button:focus,
+select:focus {
   border-color: #008484 !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
@@ -236,4 +242,7 @@ main > .content {
 }
 .table select {
   padding: 6px 10px !important;
+}
+.table form {
+  margin: 0;
 }

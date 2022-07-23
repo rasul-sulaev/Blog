@@ -1,5 +1,5 @@
 <?php
-    include "../src/controllers/SearchController.php";
+    include ROOT_PATH."/src/controllers/SearchController.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,37 +27,7 @@
                                 <h3>По ваще запросу: <i><?=$query;?></i> ничего не найдено :(</h3>
                                 <? else: ?>
                                 <h2 class="mb-4">Резултаты поиска:</h2>
-                                <? foreach ($results as $post): ?>
-                                <div class="post row">
-                                    <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
-                                    <div class="post__text col-12 col-md-8">
-                                        <a class="post__title" href="/post/<?=$post['id']?>/"><?=
-                                            strlen($post['title']) >= 100 ?
-                                                mb_substr($post['title'], 0, 100, 'UTF8').'...' :
-                                                $post['title'];
-                                            ?></a>
-                                        <div class="post__info">
-                                        <span>
-                                            <i class="fa fa-user"></i>
-                                            <?=$post['username']?>
-                                        </span>
-                                            <span>
-                                            <i class="fa fa-calendar"></i>
-                                            <?=$post['createdAt']?>
-                                        </span>
-                                            <span>
-                                            <i class="fa fa-folder"></i>
-                                            <a href="/category/<?=$post['category_name']?>/"><?=$post['category_name']?></a>
-                                        </span>
-                                        </div>
-                                        <p class="post__preview-text"><?=
-                                            strlen($post['content']) >= 350 ?
-                                            mb_substr($post['content'], 0, 350, 'UTF8').'...' :
-                                            $post['content'];
-                                        ?></p>
-                                    </div>
-                                </div>
-                                <?endforeach; ?>
+                                    <? get_posts_for_content($results); ?>
                                 <? endif; ?>
                             </div>
                         </div>
