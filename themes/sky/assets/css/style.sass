@@ -1,13 +1,13 @@
 $gray: #5c5b5b
 $bg: #f6f6f6
-$blue: #3B95FB
-$blue-hover: #2D72C1
+$blue: #247ce2
+$blue-hover: #1f62ac
 $red: #D00A00
 
 
 body
 	font-size: 14px
-	background: $bg
+	background-color: $bg !important
 
 *
 	font-family: 'Finlandica', cursive
@@ -135,77 +135,79 @@ header
 main
 	padding-bottom: 60px
 	flex-grow: 1
+	& > .content
+		margin-top: 50px
+		position: relative
 						
 						
 // Слвйдер
-.slider
-	&-title
-		margin: 35px 0 30px
-		text-align: center
-#carouselExampleCaptions
-	overflow: hidden
-	.carousel-item
-		height: 400px
-		img
-			height: 100%
-			width: 100%
-			object-fit: cover
-		.carousel-caption
-			z-index: 1
-			left: 0
-			right: 0
-			bottom: 0
-			background-color: rgba(0,0,0, 0.6)
-			.title
-				color: #fff
-				font-size: 20px
-				border-bottom: 2px solid transparent
-				&:hover
-					border-color: #fff
+//.slider
+//	&-title
+//		margin: 35px 0 30px
+//		text-align: center
+//#carouselExampleCaptions
+//	overflow: hidden
+//	.carousel-item
+//		height: 400px
+//		img
+//			height: 100%
+//			width: 100%
+//			object-fit: cover
+//		.carousel-caption
+//			z-index: 1
+//			left: 0
+//			right: 0
+//			bottom: 0
+//			background-color: rgba(0,0,0, 0.6)
+//			.title
+//				color: #fff
+//				font-size: 20px
+//				border-bottom: 2px solid transparent
+//				&:hover
+//					border-color: #fff
 
 					
 					
-// Контент
-.content
-	margin-top: 50px
-	position: relative
 	
 					
 // Посты
 .posts
-	.post
-		margin: 0
-		padding: 20px
-		background-color: #fff
-		& + .post
-			margin-top: 20px
-		&__img
-			padding: 0
-			max-height: 174px
-			object-fit: cover
-		&__title
-			font-size: 24px
-			line-height: 1.4
-			display: inline-block
-			&:hover
-				color: $blue
-		&__info
-			margin: 6px 0 20px
-			font-size: 13px
-			display: flex
-			flex-wrap: wrap
-			grid-gap: 5px 20px
-			& i
-				color: rgba(0,0,0, 0.6)
-				margin-right: 4px
-		&__preview-text
-			font-size: 14px
+	.posts-list
+		display: grid
+		grid-template-columns: repeat(3, 1fr)
+		grid-gap: 20px
+		.post
+			margin: 0
+			padding: 20px
+			background-color: #fff
+			box-sizing: border-box
+			&__img
+				padding: 0
+				height: 170px
+				width: 100%
+				object-fit: cover
+			&__title
+				font-size: 20px
+				line-height: 1.4
+				display: inline-block
+				&:hover
+					color: $blue
+			&__info
+				margin: 10px 0 15px
+				font-size: 13px
+				display: flex
+				flex-wrap: wrap
+				grid-gap: 5px 20px
+				& i
+					color: rgba(0,0,0, 0.6)
+					margin-right: 4px
+			&__preview-text
+				font-size: 14px
 			
 			
 // SIDEBAR
 .sidebar
 	.content
-		padding-top: 10px
 		position: sticky
 		top: 20px
 		display: flex
@@ -437,13 +439,3 @@ footer
 				font-size: 14px
 				p + p
 					margin-bottom: 20px
-					
-					
-// 404
-.page404
-	padding-top: 40px
-	h1
-		margin: 40px 0
-		color: $red
-		font-size: 62px !important
-	

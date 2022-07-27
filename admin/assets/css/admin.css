@@ -30,7 +30,7 @@ input:not([type=checkbox], [type=radio]):focus,
 textarea:focus,
 button:focus,
 select:focus {
-  border-color: #008484 !important;
+  border-color: #7f41d7 !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
@@ -55,13 +55,13 @@ form .success {
   color: #222;
   font-size: 16px;
   text-align: center;
-  background-color: rgba(0, 132, 132, 0.3);
+  background-color: rgba(127, 65, 215, 0.3);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 .form-check-input:checked {
-  background-color: #006669;
+  background-color: #7918bf;
   border-color: #008484;
 }
 
@@ -78,7 +78,7 @@ form .success {
 
 header {
   padding: 15px 0;
-  background: #008484;
+  background: #7f41d7;
 }
 header * {
   color: #fff;
@@ -140,7 +140,7 @@ header .navbar .navbar-nav .dropdown-menu {
   padding: 10px 10px 15px;
   border-radius: 0;
   border-color: transparent;
-  background-color: #008484;
+  background-color: #7f41d7;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -224,7 +224,7 @@ main > .content {
 }
 
 .table a {
-  color: #008484;
+  color: #7f41d7;
   text-decoration: underline;
 }
 .table a:hover {

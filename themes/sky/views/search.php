@@ -1,3 +1,6 @@
+<?php
+    include ROOT_PATH."/src/controllers/SearchController.php";
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,13 +19,20 @@
         <main>
             <section class="content">
                 <div class="container">
-                    <section class="page404">
-                        <div class="col-12 col-md-4 m-auto text-center">
-                            <h1>Ошибка 404</h1>
-                            <h4>Увы... Ничего не найдено...</h4>
-                            <a class="btn btn-secondary mt-4" href="/" style="border-radius: 0">Вернуться на главную</a>
+                    <div class="row">
+                        <div class="main-content col-12 col-md-9">
+                            <div class="posts">
+                                <? if (empty($results)): ?>
+                                <h1>Error 404</h1>
+                                <h3>По ваще запросу: <i><?=$query;?></i> ничего не найдено :(</h3>
+                                <? else: ?>
+                                <h2 class="mb-4">Резултаты поиска:</h2>
+                                <? get_posts_for_content($results); ?>
+                                <? endif; ?>
+                            </div>
                         </div>
-                    </section>
+                        <? get_sidebar(); ?>
+                    </div>
                 </div>
             </section>
         </main>
