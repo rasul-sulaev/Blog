@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="<?=BASE_URL?>/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/admin/assets/css/admin.css">
 </head>
 <body>
     <div class="wrapper">

@@ -23,7 +23,7 @@
                 <tr scope="row">
                     <th><?=$post['id']?></th>
                     <td>
-                        <img src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" style="width: 40px; height: 40px" alt="">
+                        <img src="/uploads/img/posts/<?=$post['img']?>"  style="width: 40px; height: 40px" alt="">
                         <a href="/post/<?=$post['id']?>/"><?=
                             strlen($post['title']) >= 25 ?
                             mb_substr($post['title'], 0, 25, 'UTF8').'...' :

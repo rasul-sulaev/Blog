@@ -1,6 +1,6 @@
 <? foreach ($posts as $post): ?>
     <div class="post row">
-        <img class="post__img col-12 col-md-4" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
+        <img class="post__img col-12 col-md-4" src="/uploads/img/posts/<?=$post['img']?>" alt="">
         <div class="post__text col-12 col-md-8">
             <a class="post__title" href="/post/<?=$post['id']?>/"><?=
                 strlen($post['title']) >= 100 ?

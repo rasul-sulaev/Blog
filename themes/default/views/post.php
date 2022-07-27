@@ -25,7 +25,7 @@
                                     <span><i class="fa fa-calendar"></i><?=$post['createdAt']?></span>
                                     <span><i class="fa fa-folder"></i><a href="/category/<?=$post['category_name']?>/"><?=$post['category_name']?></a></span>
                                 </div>
-                                <img class="single_post__img col-12" src="<?=BASE_URL."uploads/img/posts/".$post['img'];?>" alt="">
+                                <img class="single_post__img col-12" src="/uploads/img/posts/<?=$post['img']?>" alt="">
                                 <div class="single_post__text"><?=$post['content']?></div>
                             </div>
                             <?php include THEME_DIR."/components/comments.php"; ?>

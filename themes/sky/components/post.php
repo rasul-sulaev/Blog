@@ -1,7 +1,7 @@
 <div class="posts-list">
 <? foreach ($posts as $post): ?>
     <div class="post">
-        <img class="post__img col-12" src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" alt="">
+        <img class="post__img col-12" src="/uploads/img/posts/<?=$post['img']?>" alt="">
         <div class="post__text col-12">
             <div class="post__info">
                 <span><i class="fa fa-user"></i><?=$post['username']?></span>

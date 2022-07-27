@@ -46,7 +46,7 @@
                         <div class="carousel-inner">
                             <? foreach ($top_posts as $key => $post): ?>
                             <div class="carousel-item <? if ($key === 0) echo 'active'; ?>">
-                                <img src="<?=BASE_URL."/uploads/img/posts/".$post['img']?>" class="d-block w-100" alt="...">
+                                <img src="/uploads/img/posts/<?=$post['img']?>" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <a class="title" href="post/<?=$post['id']?>/"><?=
                                         strlen($post['title']) >= 100 ?

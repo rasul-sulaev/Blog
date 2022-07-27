@@ -1,7 +1,7 @@
 <?php
     // Пагинация
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 10;
+    $limit = 9;
 
     // Исключение символов, кроме цифр в параметре page
     if (preg_match('/^[0-9]+$/', $page)) {
@@ -28,6 +28,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?=get_template_directory_uri()?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?=get_template_directory_uri()?>/assets/css/media.css">
 </head>
 <body>
     <div class="wrapper">

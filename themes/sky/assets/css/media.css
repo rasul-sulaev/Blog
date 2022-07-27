@@ -1,0 +1,12 @@
+@media (max-width: 1200px) {
+  .posts .posts-list {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 565px) {
+  .posts .posts-list {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}
